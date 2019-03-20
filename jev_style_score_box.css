@@ -5,6 +5,16 @@
 	background: white;
 	display: flex;
 	flex-direction: column;
+	padding: 15px 18px 26px 18px;
+	box-sizing: border-box;
+	border: 2px solid #D1D2D4;
+	margin: 3%;
+}
+
+.score-box__title {
+    font-weight: 800;
+    font-size: 26px;
+    color: #404042;
 }
 
 .score-box__display {
@@ -14,7 +24,52 @@
 	text-align: center;
 }
 
+.score-box--divider {
+	width: 2px;
+	background: #D1D2D4;
+}
+
 .score-box__display--ch1,
 .score-box__display--ch2 {
 	width: 40%;
 }
+
+.score-box__display--ch1--num,
+.score-box__display--ch2--num {
+	font-size: 100px;
+	font-weight: 800;
+	color: #EC458B;
+}
+
+.score-box__display--ch1--name,
+.score-box__display--ch2--name {
+	font-weight: 700;
+    font-size: 22px;
+    color: #6E6E6E;
+}
+
+.score-box__display--ch1--guess,
+.score-box__display--ch2--guess,
+.score-box__display--ch1--hilo,
+.score-box__display--ch2--hilo {
+	font-weight: 200;
+    font-size: 18px;
+    color: #6E6E6E;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

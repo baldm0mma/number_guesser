@@ -1,6 +1,5 @@
 * {
 	font-family: "Open Sans", sans-serif;
-/*    border: 1px solid white; */
 }
 
 .header {
@@ -18,7 +17,7 @@
   	padding: 0;
 	font-size: 56px;
  	color: #EC458B;
-    font-weight: 300;
+    font-weight: 100;
 }
 
 .header__subtitle {
