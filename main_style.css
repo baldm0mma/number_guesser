@@ -3,14 +3,13 @@
 }*/
 
 * {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     font-family: "Open Sans", sans-serif;
     margin: 0;
 }
 
 .content {
 	display: flex;
-	flex-direction: row;
 }
 
 .content__left {
