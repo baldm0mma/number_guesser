@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="jev_style_range.css">
 	<link rel="stylesheet" type="text/css" href="main_style.css">
 	<link rel="stylesheet" type="text/css" href="jev_style_score_box.css">
+	<link rel="stylesheet" type="text/css" href="jev_style_winner_card.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700,800" rel="stylesheet">
 </head>
 <body>
@@ -20,71 +21,98 @@
 		</div>
 	</header>
 	
-	<div class="content__left">
-		<div class="range-box">
-	  		<div class="range-box__title">Set Range</div>
-	  		<div class="range-box__form">
-		    	<form class="range-box__form--1">
-		      		<p class="range-box__form--1--txt">Min Range</p>
-		      		<input class="range-box__form--1 input" type="text" name="min_range">
-		    	</form>
-		    	<form class="range-box__form--2">
-		  			<p class="range-box__form--2--txt">Max Range</p>
-		      		<input class="range-box__form--2 input" type="text" name="min_range">
-		    	</form>
-		    	<input class="range-box__button" type="button" name="update" value="UPDATE">
-	  		</div>
-		</div>
-		
-	  	<div id="guess-box">
-	    	<p class="guess-box__range">The current range is <span class="guess-box__range--low">1</span> to <span class="guess-box__range--high">100</span></p>
-	    	<div class="guess-box__player1">
-	      		<p class="guess-box__player1--output">Challenger 1</p>
-	      		<form class="guess-box__player1--form1">
-	        		<label for="player1name" class="guess-box__player1--label">Name</label>
-	        		<input type="text" id="player1name" class="guess-box__player1--input">
-	      		</form>
-	      		<form class="guess-box__player1--form2">
-			        <label for="player1guess" class="guess-box__player1--label">Guess</label>
-			        <input type="number" id="player1guess" class="guess-box__player1--guess">
-	      		</form>
-	    	</div>
-	    	<div class="guess-box__player2">
-	      		<p class="guess-box__player2--output">Challenger 2</p>
-	      		<form class="guess-box__player2--form1">
-	        		<label for="player2name" class="guess-box__player2--label">Name</label>
-	        		<input type="text" id="player1name" class="guess-box__player2--input">
-	      		</form>
-	      		<form class="guess-box__player2--form2">
-	        		<label for="player2guess" class="guess-box__player2--label">Guess</label>
-	        		<input type="number" id="player2guess" class="guess-box__player2--guess">
-	      		</form>
-	    	</div>
-	    	<div class="guess-box__three-buttons">
-	            <button class="guess-box__submit">Submit Guess</button>
-	      		<button class="guess-box__reset">Reset Game</button>
-	      		<button class="guess-box__clear">Clear Game</button>
-	    	</div>
-	  	</div>
+	<div class="content">
 
-		<div class="score-box">
-			<p class="score-box__title">Latest Score</p>
-			<div class="score-box__display">
-				<div class="score-box__display--ch1">
-					<p class="score-box__display--ch1--name">Challenger 1</p>
-					<p class="score-box__display--ch1--guess">current guess</p>
-					<p class="score-box__display--ch1--num">?</p>
-					<p class="score-box__display--ch1--hilo">That's too hilo</p>
-				</div>
-				<div class="score-box--divider"></div>
-				<div class="score-box__display--ch2">
-					<p class="score-box__display--ch2--name">Challenger 2</p>
-					<p class="score-box__display--ch2--guess">current guess</p>
-					<p class="score-box__display--ch2--num">?</p>
-					<p class="score-box__display--ch2--hilo">That's too hilo</p>
+		<div class="content__left">
+			
+			<div class="range-box">
+		  		<div class="range-box__title">Set Range</div>
+		  		<div class="range-box__form">
+			    	<form class="range-box__form--1">
+			      		<p class="range-box__form--1--txt">Min Range</p>
+			      		<input class="range-box__form--1 input" type="text" name="min_range">
+			    	</form>
+			    	<form class="range-box__form--2">
+			  			<p class="range-box__form--2--txt">Max Range</p>
+			      		<input class="range-box__form--2 input" type="text" name="min_range">
+			    	</form>
+			    	<input class="range-box__button" type="button" name="update" value="UPDATE">
+		  		</div>
+			</div>
+			
+		  	<div id="guess-box">
+		    	<p class="guess-box__range">The current range is <span class="guess-box__range--low">1</span> to <span class="guess-box__range--high">100</span></p>
+		    	<div class="guess-box__player1">
+		      		<p class="guess-box__player1--output">Challenger 1</p>
+		      		<form class="guess-box__player1--form1">
+		        		<label for="player1name" class="guess-box__player1--label">Name</label>
+		        		<input type="text" id="player1name" class="guess-box__player1--input">
+		      		</form>
+		      		<form class="guess-box__player1--form2">
+				        <label for="player1guess" class="guess-box__player1--label">Guess</label>
+				        <input type="number" id="player1guess" class="guess-box__player1--guess">
+		      		</form>
+		    	</div>
+		    	<div class="guess-box__player2">
+		      		<p class="guess-box__player2--output">Challenger 2</p>
+		      		<form class="guess-box__player2--form1">
+		        		<label for="player2name" class="guess-box__player2--label">Name</label>
+		        		<input type="text" id="player1name" class="guess-box__player2--input">
+		      		</form>
+		      		<form class="guess-box__player2--form2">
+		        		<label for="player2guess" class="guess-box__player2--label">Guess</label>
+		        		<input type="number" id="player2guess" class="guess-box__player2--guess">
+		      		</form>
+		    	</div>
+		    	<div class="guess-box__three-buttons">
+		            <button class="guess-box__submit">Submit Guess</button>
+		      		<button class="guess-box__reset">Reset Game</button>
+		      		<button class="guess-box__clear">Clear Game</button>
+		    	</div>
+		  	</div>
+
+			<div class="score-box">
+				<p class="score-box__title">Latest Score</p>
+				<div class="score-box__display">
+					<div class="score-box__display--ch1">
+						<p class="score-box__display--ch1--name">Challenger 1</p>
+						<p class="score-box__display--ch1--guess">current guess</p>
+						<p class="score-box__display--ch1--num">?</p>
+						<p class="score-box__display--ch1--hilo">That's too hilo</p>
+					</div>
+					<div class="score-box--divider"></div>
+					<div class="score-box__display--ch2">
+						<p class="score-box__display--ch2--name">Challenger 2</p>
+						<p class="score-box__display--ch2--guess">current guess</p>
+						<p class="score-box__display--ch2--num">?</p>
+						<p class="score-box__display--ch2--hilo">That's too hilo</p>
+					</div>
 				</div>
 			</div>
+		
 		</div>
+
+		<div class="content__right">
+			
+			<div class="winner-card">
+				<div class="winner-card__top">
+					<p class="winner-card__top--ch1">Challenger 1 Name</p>
+					<p class="winner-card__top--vs">vs</p>
+					<p class="winner-card__top--ch2">Challenger 2 Name</p>
+				</div>
+				<div class="winner-card__mid">
+					<p class="winner-card__mid--name">Challenger X Name</p>
+					<p class="winner-card__mid--win">Winner</p>
+				</div>
+				<div class="winner-card__bottom">
+					<p class="winner-card__bottom--guesses">X Guesses</p>
+					<p class="winner-card__bottom--time">X Minues</p>
+					<img  class="winner-card__bottom--img"src="####" alt="remove_button">
+				</div>
+			</div>
+		
+		</div>
+
 	</div>
 
 </body>
