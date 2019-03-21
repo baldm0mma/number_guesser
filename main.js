@@ -1,52 +1,29 @@
 
 
-var rangeUpdateButton = document.querySelector(".range-box__button");
-	
-	var minValueOutput = document.querySelector(".guess-box__range--low");
-	
-	var maxValueOutput = document.querySelector(".guess-box__range--high");
-
-	var minValueInput = document.querySelector(".range-box__form--1--input");
-	
-	var maxValueInput = document.querySelector(".range-box__form--2--input");
-
-
-var submitGuessButton = document.querySelector(".guess-box__submit");
-	
-	var name1 = document.querySelector(".guess-box__ch1--input");
-	var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
-
-	var name2 = document.querySelector(".guess-box__ch2--input");
-	var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
-
-	var guess1 = document.querySelector(".guess-box__ch1--guess");
-	var guess1Output = document.querySelector(".score-box__display--ch1--num");
-	
-	
-	var guess2 = document.querySelector(".guess-box__ch2--guess");
-	var guess2Output = document.querySelector(".score-box__display--ch2--num");
-
-var randomNumber;
-
-
 var clearGameButton = document.querySelector(".guess-box__clear");
-
+var guess1 = document.querySelector(".guess-box__ch1--guess");
+var guess1Output = document.querySelector(".score-box__display--ch1--num");
+var guess2 = document.querySelector(".guess-box__ch2--guess");
+var guess2Output = document.querySelector(".score-box__display--ch2--num");
+var maxValueInput = document.querySelector(".range-box__form--2--input");
+var maxValueOutput = document.querySelector(".guess-box__range--high");
+var minValueInput = document.querySelector(".range-box__form--1--input");
+var minValueOutput = document.querySelector(".guess-box__range--low");
+var name1 = document.querySelector(".guess-box__ch1--input");
+var name2 = document.querySelector(".guess-box__ch2--input");
+var randomNumber;
+var rangeUpdateButton = document.querySelector(".range-box__button");
 var resetGameButton = document.querySelector(".guess-box__reset");
+var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
+var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
+var submitGuessButton = document.querySelector(".guess-box__submit");
 
 window.addEventListener("load", generateRandomNumber);
 
 rangeUpdateButton.addEventListener("click", updateRange);
-
 submitGuessButton.addEventListener("click", updateNameGuess);
-
 clearGameButton.addEventListener("click", clearGame);
-
 resetGameButton.addEventListener("click", resetFields);
-
-
-
-
-
 
 function resetFields() {
 	name1.value = "";
@@ -65,7 +42,21 @@ function resetFields() {
 
 
 function clearGame(event) {
-	window.location.reload();
+	event.preventDefault();
+	guess1.value = "";
+	guess1Output.innerText = "?";
+	guess2.value = "";
+	guess2Output.innerText = "?";
+	maxValueInput.value = "";
+	maxValueOutput.innerText = "100";
+	minValueInput.value = "";
+	minValueOutput.innerText = "1";
+	name1.value = "";
+	name2.value = "";
+	scoreBoxName1.innerText = "Challenger 1";
+	scoreBoxName2.innerText = "Challenger 2";
+	generateRandomNumber();
+		console.log(randomNumber);
 }
 
 function updateRange(event) {
@@ -87,16 +78,11 @@ function updateNameGuess(event) {
 		console.log(guess2.value);
 }
 
-
 function generateRandomNumber() {
-   randomNumber = Math.floor(Math.random() * 100 + 1) + 1;
+   randomNumber = Math.floor(Math.random() * 100 + 1);
    console.log(randomNumber);
+   return randomNumber;
 }
-
-
-
-
-
 
 
 
