@@ -1,4 +1,4 @@
-// Global Variables
+
 
 var rangeUpdateButton = document.querySelector(".range-box__button");
 	
