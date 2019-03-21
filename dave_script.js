@@ -2,59 +2,71 @@
 
 var rangeUpdateButton = document.querySelector(".range-box__button");
 	
-	var minValueInput = document.querySelector(".range-box__form--1--input");
-	
-	var maxValueInput = document.querySelector(".range-box__form--2--input");
-	
 	var minValueOutput = document.querySelector(".guess-box__range--low");
 	
 	var maxValueOutput = document.querySelector(".guess-box__range--high");
 
-
+	var minValueInput = document.querySelector(".range-box__form--1--input");
+	
+	var maxValueInput = document.querySelector(".range-box__form--2--input");
 
 
 var submitGuessButton = document.querySelector(".guess-box__submit");
 	
-	var nameOneInput = document.querySelector(".guess-box__ch1--input");
-	var nameOneOutput = document.querySelector(".guess-box__ch1--name");
-	
-	var nameTwoInput = document.querySelector(".guess-box__ch2--input");
-	var nameTwoOutput = document.querySelector(".guess-box__ch2--name");
-	
-	var guessOneInput = document.querySelector(".guess-box__ch1--guess");
-	var guessOneOutput = document.querySelector(".score-box__display--ch1--num");
-	
-	
-	var guessTwoInput = document.querySelector(".guess-box__ch2--guess");
-	var guessTwoOutput = document.querySelector(".score-box__display--ch2--num");
-	
-	
-	
-	
-	
-	
+	var name1 = document.querySelector(".guess-box__ch1--input");
+	var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
 
-// var resetGameButton = document.querySelector(".guess-box__reset");
-// var clearGameButton = document.querySelector(".guess-box__clear");
-// var clearWinnerCardButton = document.querySelector(".winner-card__bottom--img");
+	var name2 = document.querySelector(".guess-box__ch2--input");
+	var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
 
-// Event Listeners
+	var guess1 = document.querySelector(".guess-box__ch1--guess");
+	var guess1Output = document.querySelector(".score-box__display--ch1--num");
+	
+	
+	var guess2 = document.querySelector(".guess-box__ch2--guess");
+	var guess2Output = document.querySelector(".score-box__display--ch2--num");
 
-// minValue.addEventListener("click", function1());
-// maxValue.addEventListener("click", function2());
-// nameOne.addEventListener("click", function3());
-// guessOne.addEventListener("click", function4());
-// nameTwo.addEventListener("click", function5());
-// guessTwo.addEventListener("click", function6());
+var randomNumber;
+
+
+var clearGameButton = document.querySelector(".guess-box__clear");
+
+var resetGameButton = document.querySelector(".guess-box__reset");
+
+window.addEventListener("load", generateRandomNumber);
 
 rangeUpdateButton.addEventListener("click", updateRange);
 
 submitGuessButton.addEventListener("click", updateNameGuess);
-// resetGameButton.addEventListener("click", function9());
-// clearGameButton.addEventListener("click", function10());
-// clearWinnerCardButton.addEventListener("click", function11());
 
-// Update range function
+clearGameButton.addEventListener("click", clearGame);
+
+resetGameButton.addEventListener("click", resetFields);
+
+
+
+
+
+
+function resetFields() {
+	name1.value = "";
+	name2.value = "";
+	guess1.value = "";
+	guess2.value = "";
+	guess2Output.innerText = "?";
+	guess1Output.innerText = "?";
+	scoreBoxName1.innerText= "Challenger 1";
+	scoreBoxName2.innerText= "Challenger 2";
+		console.log(name1.value);
+		console.log(name2.value);
+		console.log(guess2.value);
+		console.log(guess1.value);
+}
+
+
+function clearGame(event) {
+	window.location.reload();
+}
 
 function updateRange(event) {
 	event.preventDefault();
@@ -65,19 +77,42 @@ function updateRange(event) {
 }
 
 function updateNameGuess(event) {
-	event.preventDefault();
-	nameOneOutput.innerText = nameOneInput.value;
-	guessOneOutput.innerText = guessOneInput.value;
-	nameTwoOutput.innerText = nameTwoInput.value;
-	guessTwoOutput.innerText = guessTwoInput.value;
-		console.log(nameOneInput.value);
-		console.log(guessOneInput.value);
-		console.log(nameTwoInput.value);
-		console.log(guessTwoInput.value);
+	guess2Output.innerText = guess2.value;
+	guess1Output.innerText = guess1.value;
+	scoreBoxName1.innerText = name1.value;
+	scoreBoxName2.innerText = name2.value;
+		console.log(name1.value);
+		console.log(guess1.value);
+		console.log(name2.value);
+		console.log(guess2.value);
 }
 
-// Random number generator
 
-// function generateRandomNumer();
+function generateRandomNumber() {
+   randomNumber = Math.floor(Math.random() * 100 + 1) + 1;
+   console.log(randomNumber);
+}
 
-// var randomNumber = Math.floor(Math.random() * 10 + 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
