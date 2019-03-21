@@ -33,8 +33,8 @@
     display: flex;
 }
 
-.range-box__form--1.input,
-.range-box__form--2.input {
+.range-box__form--1--input,
+.range-box__form--2--input {
     height: 35px;
     width: 80%;
     font-size: 20px;
