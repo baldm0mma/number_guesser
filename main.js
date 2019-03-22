@@ -82,6 +82,24 @@ submitGuessButton.addEventListener('click', function(event) {
 		}
 });
 
+submitGuessButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (guess1.value > maxValueInput.value) {
+    console.log('Please enter a number in the correct range');
+} else if (guess1.value < minValueInput.value ) {
+    console.log('please enter a number in the correct range')
+}
+})
+
+submitGuessButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (guess2.value > maxValueInput.value) {
+    console.log('Please enter a number in the correct range');
+} else if (guess2.value < minValueInput.value ) {
+    console.log('please enter a number in the correct range');
+}
+})
+
 
 
 
