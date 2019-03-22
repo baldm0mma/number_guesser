@@ -17,6 +17,7 @@ var name1 = document.querySelector(".guess-box__ch1--input");
 var name2 = document.querySelector(".guess-box__ch2--input");
 
 var winNum = generateRandomNumber();
+console.log(winNum);
 
 var rangeUpdateButton = document.querySelector(".range-box__button");
 var resetGameButton = document.querySelector(".guess-box__reset");
@@ -41,7 +42,7 @@ function checkGuessFields(e) {
 	}
 } 
 
-function generateRandomNumber(min, max) {
+function generateRandomNumber() {
    var min = parseInt(minValueInput.value) || 1;
    var max = parseInt(maxValueInput.value) || 100;
    return Math.floor(Math.random() * (max - min +1)) + min;
