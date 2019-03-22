@@ -27,3 +27,19 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.enable {
+	background: #7F7F7F;
+    height: 40px;
+    border-radius: 30px;
+    width: 160px;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+
+

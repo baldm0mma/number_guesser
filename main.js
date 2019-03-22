@@ -26,7 +26,7 @@ var clearGameButton = document.querySelector(".guess-box__clear");
 
 
 
-rangeUpdateButton.addEventListener("click", test);
+rangeUpdateButton.addEventListener("click", updateRange);
 submitGuessButton.addEventListener("click", updateNameGuess);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
@@ -37,10 +37,6 @@ guess2.addEventListener("keyup", checkGuessFields);
 minValueInput.addEventListener("keyup", checkRangeFields);
 maxValueInput.addEventListener("keyup", checkRangeFields);
 
-function test() {
-	checkRangeFields();
-	updateRange();
-}
 
 function checkGuessFields(e) {
 	if (guess1.value && guess2.value === '') {
@@ -55,6 +51,7 @@ function checkRangeFields(e) {
 		rangeUpdateButton.disabled = true;
 	} else {
 		rangeUpdateButton.disabled = false;
+		rangeUpdateButton.classList.add('enable');
 	}
 }
 
