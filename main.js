@@ -16,7 +16,6 @@ var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
 var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
 
 var winNum = generateRandomNumber();
-console.log(winNum);
 
 var submitGuessButton = document.querySelector(".guess-box__submit");
 var rangeUpdateButton = document.querySelector(".range-box__button");
@@ -34,15 +33,19 @@ resetGameButton.addEventListener("click", resetFields);
 
 guess1.addEventListener("keyup", checkGuessFields);
 guess2.addEventListener("keyup", checkGuessFields);
+guess1.addEventListener("keyup", enableResetClear);
+guess2.addEventListener("keyup", enableResetClear);
+name1.addEventListener("keyup", enableResetClear);
+name2.addEventListener("keyup", enableResetClear);
 minValueInput.addEventListener("keyup", checkRangeFields);
 maxValueInput.addEventListener("keyup", checkRangeFields);
-
 
 function checkGuessFields(e) {
 	if (guess1.value && guess2.value === '') {
 		submitGuessButton.disabled = true;
 	} else {
 		submitGuessButton.disabled = false;
+		submitGuessButton.classList.add("enable")
 	}
 } 
 
@@ -51,9 +54,32 @@ function checkRangeFields(e) {
 		rangeUpdateButton.disabled = true;
 	} else {
 		rangeUpdateButton.disabled = false;
-		rangeUpdateButton.classList.add('enable');
+		rangeUpdateButton.classList.add("enable");
 	}
 }
+
+function enableResetClear(e) {
+	if (name1.value && name2.value && guess1.value && guess2.value === '') {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
+	} else {
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
+		resetGameButton.classList.add("enable");
+		clearGameButton.classList.add("enable");
+	}
+}
+
+
+// $(function () {
+//     $('.guess-box__ch1--input, .guess-box__ch2--input, .guess-box__ch1--guess, .guess-box__ch2--guess').onkeyup(function () {
+//         if ($(this).val() == '') {
+//             $('.enable_on_input').prop('disabled', true);
+//         } else {
+//             $('.enable_on_input').prop('disabled', false);
+//         }
+//     });
+// });
 
 
 function generateRandomNumber() {
@@ -61,6 +87,7 @@ function generateRandomNumber() {
    var max = parseInt(maxValueInput.value) || 100;
    return Math.floor(Math.random() * (max - min +1)) + min;
 }
+console.log(winNum);
 
 submitGuessButton.addEventListener('click', function(event) {
 	event.preventDefault();
@@ -92,8 +119,8 @@ function resetFields() {
 	guess2.value = "";
 	guess2Output.innerText = "?";
 	guess1Output.innerText = "?";
-	scoreBoxName1.innerText= "Challenger 1";
-	scoreBoxName2.innerText= "Challenger 2";
+	scoreBoxName1.innerText = "Challenger 1";
+	scoreBoxName2.innerText = "Challenger 2";
 
 		console.log(name1.value);
 		console.log(name2.value);
