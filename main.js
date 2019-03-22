@@ -26,7 +26,7 @@ var clearGameButton = document.querySelector(".guess-box__clear");
 
 
 
-rangeUpdateButton.addEventListener("click", updateRange);
+rangeUpdateButton.addEventListener("click", test);
 submitGuessButton.addEventListener("click", updateNameGuess);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
@@ -34,6 +34,13 @@ resetGameButton.addEventListener("click", resetFields);
 
 guess1.addEventListener("keyup", checkGuessFields);
 guess2.addEventListener("keyup", checkGuessFields);
+minValueInput.addEventListener("keyup", checkRangeFields);
+maxValueInput.addEventListener("keyup", checkRangeFields);
+
+function test() {
+	checkRangeFields();
+	updateRange();
+}
 
 function checkGuessFields(e) {
 	if (guess1.value && guess2.value === '') {
@@ -43,6 +50,15 @@ function checkGuessFields(e) {
 	}
 } 
 
+function checkRangeFields(e) {
+	if (minValueInput.value && maxValueInput.value === '') {
+		rangeUpdateButton.disabled = true;
+	} else {
+		rangeUpdateButton.disabled = false;
+	}
+}
+
+
 function generateRandomNumber() {
    var min = parseInt(minValueInput.value) || 1;
    var max = parseInt(maxValueInput.value) || 100;
@@ -51,15 +67,15 @@ function generateRandomNumber() {
 
 submitGuessButton.addEventListener('click', function(event) {
 	event.preventDefault();
-		if (guess1.value > randomNumber) {
+		if (guess1.value > winNum) {
 			tooHilo1.innerText = 'That\'s too high!';
-		} else if (guess1.value < randomNumber) {
+		} else if (guess1.value < winNum) {
 			tooHilo1.innerText = 'That\'s too low!';
 		} else {
 			tooHilo1.innerText = "BOOM!";
-		} if (guess2.value > randomNumber) {
+		} if (guess2.value > winNum) {
 			tooHilo2.innerText = 'That\'s too high!';
-		} else if (guess2.value < randomNumber) {
+		} else if (guess2.value < winNum) {
 			tooHilo2.innerText = 'That\'s too low!';
 		} else {
 			tooHilo2.innerText = "BOOM!";
@@ -108,7 +124,6 @@ function clearGame(event) {
 }
 
 function updateRange(event) {
-	event.preventDefault();
 	minValueOutput.innerText = minValueInput.value;
 	maxValueOutput.innerText = maxValueInput.value;
 		winNum = generateRandomNumber();
