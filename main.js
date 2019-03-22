@@ -1,13 +1,9 @@
 
 
 var rangeUpdateButton = document.querySelector(".range-box__button");
-	
 	var minValueOutput = document.querySelector(".guess-box__range--low");
-	
 	var maxValueOutput = document.querySelector(".guess-box__range--high");
-
 	var minValueInput = document.querySelector(".range-box__form--1--input");
-	
 	var maxValueInput = document.querySelector(".range-box__form--2--input");
 
 
@@ -15,23 +11,21 @@ var submitGuessButton = document.querySelector(".guess-box__submit");
 	
 	var name1 = document.querySelector(".guess-box__ch1--input");
 	var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
-
 	var name2 = document.querySelector(".guess-box__ch2--input");
 	var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
-
 	var guess1 = document.querySelector(".guess-box__ch1--guess");
 	var guess1Output = document.querySelector(".score-box__display--ch1--num");
-	
 	
 	var guess2 = document.querySelector(".guess-box__ch2--guess");
 	var guess2Output = document.querySelector(".score-box__display--ch2--num");
 
 var randomNumber;
 
-
 var clearGameButton = document.querySelector(".guess-box__clear");
-
 var resetGameButton = document.querySelector(".guess-box__reset");
+var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
+var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
+
 
 window.addEventListener("load", generateRandomNumber);
 
@@ -42,6 +36,26 @@ submitGuessButton.addEventListener("click", updateNameGuess);
 clearGameButton.addEventListener("click", clearGame);
 
 resetGameButton.addEventListener("click", resetFields);
+
+submitGuessButton.addEventListener('click', function(event) {
+	if (guess1.value > randomNumber) {
+    tooHilo1.innerText = 'That\'s too high!';
+  } else if (guess1.value < randomNumber) {
+    tooHilo1.innerText = 'That\'s too low!';
+  } else {
+    tooHilo1.innerText = "BOOM!";
+  }
+  event.preventDefault();
+
+  if (guess2.value > randomNumber) {
+    tooHilo2.innerText = 'That\'s too high!';
+  } else if (guess2.value < randomNumber) {
+    tooHilo2.innerText = 'That\'s too low!';
+  } else {
+    tooHilo2.innerText = "BOOM!";
+  }
+	event.preventDefault();
+});
 
 
 
@@ -90,7 +104,8 @@ function updateNameGuess(event) {
 
 function generateRandomNumber() {
    randomNumber = Math.floor(Math.random() * 100 + 1) + 1;
-   console.log(randomNumber);
+   console.log(randomNumber)
+   return(randomNumber);
 }
 
 
