@@ -241,6 +241,10 @@
     width: 31%;
 }
 
+.input-error {
+    border: 2px solid #DD1972;
+}
+
 /*This placement is specifically to assure that the enable button color fires farther down the cascade then all the buttons it effects*/
 
 .enable {

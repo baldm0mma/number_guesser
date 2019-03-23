@@ -183,12 +183,12 @@ function winner2() {
 	var column = document.querySelector(".content__right");
 	var winnerCard = `<div class="winner-card">
 					   <div class="winner-card__top">
-						 <p class="winner-card__top--ch1 winner-card--name">Challenger 1 Name</p>
+						 <p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
 						 <p class="winner-card__top--vs">vs</p>
-						 <p class="winner-card__top--ch2 winner-card--name">Challenger 2 Name</p>
+						 <p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
 					   </div>
 					   <div class="winner-card__mid">
-						 <p class="winner-card__mid--name winner-card--name">Challenger X Name</p>
+						 <p class="winner-card__mid--name winner-card--name">${name2.value}</p>
 						 <p class="winner-card__mid--win">Winner</p>
 					   </div>
 					   <div class="winner-card__bottom">
@@ -198,16 +198,6 @@ function winner2() {
 					   </div>
 				     </div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
-	function updateWinner() {
-		var ch1 = document.querySelector(".winner-card__top--ch1");
-		var ch2 = document.querySelector(".winner-card__top--ch2");
-		var winnerName = document.querySelector(".winner-card__mid--name");
-		ch1.innerText = name1.value;
-			console.log(name1);
-		ch2.innerText = name2.value;
-			console.log(name2);
-		winnerName.innerText = name2.value;
-	}
 }
 
 
