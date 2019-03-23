@@ -14,6 +14,7 @@ var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
 var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
 var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
 var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
+var finalGuessTotal = 0;
 
 var winNum = generateRandomNumber();
 
@@ -27,7 +28,7 @@ var clearGameButton = document.querySelector(".guess-box__clear");
 
 
 rangeUpdateButton.addEventListener("click", updateRange);
-submitGuessButton.addEventListener("click", updateNameGuess);
+submitGuessButton.addEventListener("click", submitButtonFunctions);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
 
@@ -149,6 +150,16 @@ function updateRange(event) {
 		console.log(winNum);
 }
 
+
+function submitButtonFunctions(event) {
+	event.preventDefault();
+		updateNameGuess();
+		checkInputRange1();
+		checkInputRange2();
+		checkNameInput1();
+		checkNameInput2();
+}
+
 function updateNameGuess(event) {
 	guess2Output.innerText = guess2.value;
 	guess1Output.innerText = guess1.value;
@@ -157,6 +168,45 @@ function updateNameGuess(event) {
 		console.log(name1.value);
 		console.log(name2.value);
 }
+
+function checkInputRange1() {
+	if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
+		guess1.classList.add("input-error");
+		alert('Please enter a number in the correct range');
+	} else {
+		guess1.classList.remove("input-error");
+		guess1.classList.remove("input-error");
+	}
+}
+
+function checkInputRange2() {
+	if (guess2.value > maxValueInput.value || guess2.value < minValueInput.value) {
+		guess2.classList.add("input-error");
+		alert('Please enter a number in the correct range');
+	} else {
+		guess2.classList.remove("input-error");
+		guess2.classList.remove("input-error");
+	}
+}
+
+function checkNameInput1() {
+	if (name1.value === '') {
+		name1.classList.add("input-error");
+		alert('Please enter a name.');
+	} else {
+		name1.classList.remove("input-error");
+	}
+}
+
+function checkNameInput2() {
+	if (name2.value === '') {
+		name2.classList.add("input-error");
+		alert('Please enter a name.');
+	} else {
+		name2.classList.remove("input-error");
+	}
+}
+
 
 function winner1() {
 	var column = document.querySelector(".content__right");
