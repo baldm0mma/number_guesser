@@ -196,11 +196,11 @@
 }
 
 .form1 {
-	flex-grow: 100;
+	width: 60%;
 }
 
 .form2 {
-	flex-grow: 1;
+	width: 30%;
 	margin-left: 6%;
 }
 
