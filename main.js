@@ -17,6 +17,7 @@ var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
 
 var winNum = generateRandomNumber();
 
+
 var submitGuessButton = document.querySelector(".guess-box__submit");
 var rangeUpdateButton = document.querySelector(".range-box__button");
 var resetGameButton = document.querySelector(".guess-box__reset");
@@ -59,14 +60,14 @@ function checkRangeFields(e) {
 }
 
 function enableResetClear(e) {
-	if (name1.value && name2.value && guess1.value && guess2.value === '') {
-		resetGameButton.disabled = true;
-		clearGameButton.disabled = true;
-	} else {
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
 		resetGameButton.disabled = false;
 		clearGameButton.disabled = false;
 		resetGameButton.classList.add("enable");
 		clearGameButton.classList.add("enable");
+	} else {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
 	}
 }
 
@@ -97,20 +98,16 @@ submitGuessButton.addEventListener('click', function(event) {
 			tooHilo1.innerText = 'That\'s too low!';
 		} else {
 			tooHilo1.innerText = "BOOM!";
+			winner1();
 		} if (guess2.value > winNum) {
 			tooHilo2.innerText = 'That\'s too high!';
 		} else if (guess2.value < winNum) {
 			tooHilo2.innerText = 'That\'s too low!';
 		} else {
 			tooHilo2.innerText = "BOOM!";
+			winner2();
 		}
 });
-
-
-
-
-
-
 
 function resetFields() {
 	name1.value = "";
@@ -121,13 +118,7 @@ function resetFields() {
 	guess1Output.innerText = "?";
 	scoreBoxName1.innerText = "Challenger 1";
 	scoreBoxName2.innerText = "Challenger 2";
-
-		console.log(name1.value);
-		console.log(name2.value);
-		console.log(guess2.value);
-		console.log(guess1.value);
 }
-
 
 function clearGame(event) {
 	event.preventDefault();
@@ -152,8 +143,6 @@ function updateRange(event) {
 	maxValueOutput.innerText = maxValueInput.value;
 		winNum = generateRandomNumber();
 		console.log(winNum);
-		// console.log(minValueInput.value);
-		// console.log(maxValueInput.value);
 }
 
 function updateNameGuess(event) {
@@ -162,12 +151,66 @@ function updateNameGuess(event) {
 	scoreBoxName1.innerText = name1.value;
 	scoreBoxName2.innerText = name2.value;
 		console.log(name1.value);
-		console.log(guess1.value);
 		console.log(name2.value);
-		console.log(guess2.value);
 }
 
+function winner1() {
+	var column = document.querySelector(".content__right");
+	var ch1 = document.querySelector(".winner-card__top--ch1");
+	var ch2 = document.querySelector(".winner-card__top--ch2");
+	var winnerName = document.querySelector(".winner-card__mid--name");
+	var winnerCard = `<div class="winner-card">
+					   <div class="winner-card__top">
+						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--vs">vs</p>
+						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+					   </div>
+					   <div class="winner-card__mid">
+						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--win">Winner</p>
+					   </div>
+					   <div class="winner-card__bottom">
+						 <p class="winner-card__bottom--guesses">X Guesses</p>
+						 <p class="winner-card__bottom--time">X Minues</p>
+						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
+					   </div>
+				     </div>`;
+	column.insertAdjacentHTML('afterbegin', winnerCard);
+	ch1.innerText = name1.value;
+	ch2.innerText = name2.value;
+	winnerName.innerText = name1.value;
+}
 
+function winner2() {
+	var column = document.querySelector(".content__right");
+	var winnerCard = `<div class="winner-card">
+					   <div class="winner-card__top">
+						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--vs">vs</p>
+						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+					   </div>
+					   <div class="winner-card__mid">
+						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--win">Winner</p>
+					   </div>
+					   <div class="winner-card__bottom">
+						 <p class="winner-card__bottom--guesses">X Guesses</p>
+						 <p class="winner-card__bottom--time">X Minues</p>
+						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
+					   </div>
+				     </div>`;
+	column.insertAdjacentHTML('afterbegin', winnerCard);
+	function updateWinner() {
+		var ch1 = document.querySelector(".winner-card__top--ch1");
+		var ch2 = document.querySelector(".winner-card__top--ch2");
+		var winnerName = document.querySelector(".winner-card__mid--name");
+		ch1.innerText = name1.value;
+			console.log(name1);
+		ch2.innerText = name2.value;
+			console.log(name2);
+		winnerName.innerText = name2.value;
+	}
+}
 
 
 
