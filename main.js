@@ -118,6 +118,8 @@ function resetFields() {
 	guess1Output.innerText = "?";
 	scoreBoxName1.innerText = "Challenger 1";
 	scoreBoxName2.innerText = "Challenger 2";
+	tooHilo1.innerText = "How close is your guess?";
+	tooHilo2.innerText = "How close is your guess?";
 }
 
 function clearGame(event) {
@@ -134,6 +136,8 @@ function clearGame(event) {
 	name2.value = "";
 	scoreBoxName1.innerText = "Challenger 1";
 	scoreBoxName2.innerText = "Challenger 2";
+	tooHilo1.innerText = "How close is your guess?";
+	tooHilo2.innerText = "How close is your guess?";
 		winNum = generateRandomNumber();
 		console.log(winNum);
 }
@@ -156,17 +160,14 @@ function updateNameGuess(event) {
 
 function winner1() {
 	var column = document.querySelector(".content__right");
-	var ch1 = document.querySelector(".winner-card__top--ch1");
-	var ch2 = document.querySelector(".winner-card__top--ch2");
-	var winnerName = document.querySelector(".winner-card__mid--name");
 	var winnerCard = `<div class="winner-card">
 					   <div class="winner-card__top">
-						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
 						 <p class="winner-card__top--vs">vs</p>
-						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+						 <p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
 					   </div>
 					   <div class="winner-card__mid">
-						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--name winner-card--name">${name1.value}</p>
 						 <p class="winner-card__mid--win">Winner</p>
 					   </div>
 					   <div class="winner-card__bottom">
@@ -176,21 +177,18 @@ function winner1() {
 					   </div>
 				     </div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
-	ch1.innerText = name1.value;
-	ch2.innerText = name2.value;
-	winnerName.innerText = name1.value;
 }
 
 function winner2() {
 	var column = document.querySelector(".content__right");
 	var winnerCard = `<div class="winner-card">
 					   <div class="winner-card__top">
-						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--ch1 winner-card--name">Challenger 1 Name</p>
 						 <p class="winner-card__top--vs">vs</p>
-						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+						 <p class="winner-card__top--ch2 winner-card--name">Challenger 2 Name</p>
 					   </div>
 					   <div class="winner-card__mid">
-						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--name winner-card--name">Challenger X Name</p>
 						 <p class="winner-card__mid--win">Winner</p>
 					   </div>
 					   <div class="winner-card__bottom">
