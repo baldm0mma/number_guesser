@@ -1,5 +1,3 @@
-
-
 var guess1 = document.querySelector(".guess-box__ch1--guess");
 var guess1Output = document.querySelector(".score-box__display--ch1--num");
 var guess2 = document.querySelector(".guess-box__ch2--guess");
@@ -16,7 +14,7 @@ var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
 var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
 
 var winNum = generateRandomNumber();
-console.log(winNum);
+
 
 var submitGuessButton = document.querySelector(".guess-box__submit");
 var rangeUpdateButton = document.querySelector(".range-box__button");
@@ -26,27 +24,27 @@ var clearGameButton = document.querySelector(".guess-box__clear");
 
 
 
-rangeUpdateButton.addEventListener("click", test);
-submitGuessButton.addEventListener("click", updateNameGuess);
+rangeUpdateButton.addEventListener("click", updateRange);
+submitGuessButton.addEventListener("click", submitButtonFunctions);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
 
 
 guess1.addEventListener("keyup", checkGuessFields);
 guess2.addEventListener("keyup", checkGuessFields);
+guess1.addEventListener("keyup", enableResetClear);
+guess2.addEventListener("keyup", enableResetClear);
+name1.addEventListener("keyup", enableResetClear);
+name2.addEventListener("keyup", enableResetClear);
 minValueInput.addEventListener("keyup", checkRangeFields);
 maxValueInput.addEventListener("keyup", checkRangeFields);
-
-function test() {
-	checkRangeFields();
-	updateRange();
-}
 
 function checkGuessFields(e) {
 	if (guess1.value && guess2.value === '') {
 		submitGuessButton.disabled = true;
 	} else {
 		submitGuessButton.disabled = false;
+		submitGuessButton.classList.add("enable")
 	}
 } 
 
@@ -55,8 +53,32 @@ function checkRangeFields(e) {
 		rangeUpdateButton.disabled = true;
 	} else {
 		rangeUpdateButton.disabled = false;
+		rangeUpdateButton.classList.add("enable");
 	}
 }
+
+function enableResetClear(e) {
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
+		resetGameButton.classList.add("enable");
+		clearGameButton.classList.add("enable");
+	} else {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
+	}
+}
+
+
+// $(function () {
+//     $('.guess-box__ch1--input, .guess-box__ch2--input, .guess-box__ch1--guess, .guess-box__ch2--guess').onkeyup(function () {
+//         if ($(this).val() == '') {
+//             $('.enable_on_input').prop('disabled', true);
+//         } else {
+//             $('.enable_on_input').prop('disabled', false);
+//         }
+//     });
+// });
 
 
 function generateRandomNumber() {
@@ -64,6 +86,7 @@ function generateRandomNumber() {
    var max = parseInt(maxValueInput.value) || 100;
    return Math.floor(Math.random() * (max - min +1)) + min;
 }
+console.log(winNum);
 
 submitGuessButton.addEventListener('click', function(event) {
 	event.preventDefault();
@@ -73,38 +96,16 @@ submitGuessButton.addEventListener('click', function(event) {
 			tooHilo1.innerText = 'That\'s too low!';
 		} else {
 			tooHilo1.innerText = "BOOM!";
+			winner1();
 		} if (guess2.value > winNum) {
 			tooHilo2.innerText = 'That\'s too high!';
 		} else if (guess2.value < winNum) {
 			tooHilo2.innerText = 'That\'s too low!';
 		} else {
 			tooHilo2.innerText = "BOOM!";
+			winner2();
 		}
 });
-
-submitGuessButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  if (guess1.value > maxValueInput.value) {
-    console.log('Please enter a number in the correct range');
-} else if (guess1.value < minValueInput.value ) {
-    console.log('please enter a number in the correct range')
-}
-})
-
-submitGuessButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  if (guess2.value > maxValueInput.value) {
-    console.log('Please enter a number in the correct range');
-} else if (guess2.value < minValueInput.value ) {
-    console.log('please enter a number in the correct range');
-}
-})
-
-
-
-
-
-
 
 function resetFields() {
 	name1.value = "";
@@ -113,15 +114,9 @@ function resetFields() {
 	guess2.value = "";
 	guess2Output.innerText = "?";
 	guess1Output.innerText = "?";
-	scoreBoxName1.innerText= "Challenger 1";
-	scoreBoxName2.innerText= "Challenger 2";
-
-		console.log(name1.value);
-		console.log(name2.value);
-		console.log(guess2.value);
-		console.log(guess1.value);
+	scoreBoxName1.innerText = "Challenger 1";
+	scoreBoxName2.innerText = "Challenger 2";
 }
-
 
 function clearGame(event) {
 	event.preventDefault();
@@ -146,22 +141,121 @@ function updateRange(event) {
 	maxValueOutput.innerText = maxValueInput.value;
 		winNum = generateRandomNumber();
 		console.log(winNum);
-		// console.log(minValueInput.value);
-		// console.log(maxValueInput.value);
+}
+
+function submitButtonFunctions(event) {
+  event.preventDefault();
+  updateNameGuess();
+  checkInputRange1();
+  checkInputRange2();
+  checkNameInput1();
+  checkNameInput2();
 }
 
 function updateNameGuess(event) {
-	guess2Output.innerText = guess2.value;
-	guess1Output.innerText = guess1.value;
-	scoreBoxName1.innerText = name1.value;
-	scoreBoxName2.innerText = name2.value;
-		console.log(name1.value);
-		console.log(guess1.value);
-		console.log(name2.value);
-		console.log(guess2.value);
+  guess2Output.innerText = guess2.value;
+  guess1Output.innerText = guess1.value;
+  scoreBoxName1.innerText = name1.value;
+  scoreBoxName2.innerText = name2.value;
+    console.log(name1.value);
+    console.log(name2.value);
 }
 
+function checkInputRange1() {
+  if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
+    guess1.classList.add("input-error");
+    alert('Please enter a number in the correct range');
+  } else {
+    guess1.classList.remove("input-error");
+    guess1.classList.remove("input-error");
+  }
+}
 
+function checkInputRange2() {
+  if (guess2.value > maxValueInput.value || guess2.value < minValueInput.value) {
+    guess2.classList.add("input-error");
+    alert('Please enter a number in the correct range');
+} else {
+    guess2.classList.remove("input-error");
+    guess2.classList.remove("input-error");
+  }
+}
+
+function checkNameInput1() {
+  if (name1.value === '') {
+    name1.classList.add("input-error");
+    alert('Please enter a name.');
+  } else {
+    name1.classList.remove("input-error");
+  }
+}
+
+function checkNameInput2() {
+  if (name2.value === '') {
+    name2.classList.add("input-error");
+    alert('Please enter a name.');
+  } else {
+    name2.classList.remove("input-error");
+  }
+}
+
+function winner1() {
+	var column = document.querySelector(".content__right");
+	var ch1 = document.querySelector(".winner-card__top--ch1");
+	var ch2 = document.querySelector(".winner-card__top--ch2");
+	var winnerName = document.querySelector(".winner-card__mid--name");
+	var winnerCard = `<div class="winner-card">
+					   <div class="winner-card__top">
+						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--vs">vs</p>
+						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+					   </div>
+					   <div class="winner-card__mid">
+						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--win">Winner</p>
+					   </div>
+					   <div class="winner-card__bottom">
+						 <p class="winner-card__bottom--guesses">X Guesses</p>
+						 <p class="winner-card__bottom--time">X Minues</p>
+						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
+					   </div>
+				     </div>`;
+	column.insertAdjacentHTML('afterbegin', winnerCard);
+	ch1.innerText = name1.value;
+	ch2.innerText = name2.value;
+	winnerName.innerText = name1.value;
+}
+
+function winner2() {
+	var column = document.querySelector(".content__right");
+	var winnerCard = `<div class="winner-card">
+					   <div class="winner-card__top">
+						 <p class="winner-card__top--ch1">Challenger 1 Name</p>
+						 <p class="winner-card__top--vs">vs</p>
+						 <p class="winner-card__top--ch2">Challenger 2 Name</p>
+					   </div>
+					   <div class="winner-card__mid">
+						 <p class="winner-card__mid--name">Challenger X Name</p>
+						 <p class="winner-card__mid--win">Winner</p>
+					   </div>
+					   <div class="winner-card__bottom">
+						 <p class="winner-card__bottom--guesses">X Guesses</p>
+						 <p class="winner-card__bottom--time">X Minues</p>
+						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
+					   </div>
+				     </div>`;
+	column.insertAdjacentHTML('afterbegin', winnerCard);
+	function updateWinner() {
+		var ch1 = document.querySelector(".winner-card__top--ch1");
+		var ch2 = document.querySelector(".winner-card__top--ch2");
+		var winnerName = document.querySelector(".winner-card__mid--name");
+		ch1.innerText = name1.value;
+			console.log(name1);
+		ch2.innerText = name2.value;
+			console.log(name2);
+		winnerName.innerText = name2.value;
+	}
+}
 
 
 
