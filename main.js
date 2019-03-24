@@ -112,9 +112,9 @@ submitGuessButton.addEventListener('click', function(event) {
 });
 
 function valueReset() {
-	var boxs = document.getElementsByClassName('guess-box__forms')
-	for (var i = 0; i < boxs.length; i++) {
-		boxs[i].reset();
+	var inputs = document.getElementsByClassName('guess-box__forms')
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].reset();
 	}
 }
 
