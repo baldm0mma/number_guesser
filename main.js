@@ -181,6 +181,27 @@ function generateRandomNumber() {
 console.log(winNum);
 
 // Total guess counter function
+function checkInputRange1() {
+  var lowRange = minValueInput.value || 1;
+  var highRange = maxValueInput.value || 100;
+  if (guess1.value > highRange || guess1.value < lowRange) {
+		guess1.classList.add("input-error");
+		alert('Please enter a number in the correct range');
+	} else {
+		guess1.classList.remove("input-error"); 
+	}
+}
+
+function checkInputRange2() {
+  var lowRange = minValueInput.value || 1;
+  var highRange = maxValueInput.value || 100;
+	if (guess2.value > highRange || guess2.value < lowRange) {
+		guess2.classList.add("input-error");
+		alert('Please enter a number in the correct range');
+	} else {
+		guess2.classList.remove("input-error");
+	}
+}
 
 function totalGuesses() {
 	guessTotal += 1;
