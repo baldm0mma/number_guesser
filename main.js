@@ -1,5 +1,3 @@
-
-
 var guess1 = document.querySelector(".guess-box__ch1--guess");
 var guess1Output = document.querySelector(".score-box__display--ch1--num");
 var guess2 = document.querySelector(".guess-box__ch2--guess");
@@ -15,9 +13,7 @@ var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
 var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
 var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
 var guessTotal = 0;
-
 var winNum = generateRandomNumber();
-
 
 var submitGuessButton = document.querySelector(".guess-box__submit");
 var rangeUpdateButton = document.querySelector(".range-box__button");
@@ -25,16 +21,11 @@ var resetGameButton = document.querySelector(".guess-box__reset");
 var clearGameButton = document.querySelector(".guess-box__clear");
 // var deleteCardButton = document.querySelector(".winner-card__bottom--img");
 
-
-
-
 rangeUpdateButton.addEventListener("click", updateRange);
 submitGuessButton.addEventListener("click", submitButtonFunctions);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
 // deleteCardButton.addEventListener("click", deleteCard);
-
-
 
 guess1.addEventListener("keyup", checkGuessFields);
 guess2.addEventListener("keyup", checkGuessFields);
@@ -45,113 +36,7 @@ name2.addEventListener("keyup", enableResetClear);
 minValueInput.addEventListener("keyup", checkRangeFields);
 maxValueInput.addEventListener("keyup", checkRangeFields);
 
-function checkGuessFields(e) {
-	if (guess1.value && guess2.value === '') {
-		submitGuessButton.disabled = true;
-	} else {
-		submitGuessButton.disabled = false;
-		submitGuessButton.classList.add("enable")
-	}
-} 
-
-function checkRangeFields(e) {
-	if (minValueInput.value && maxValueInput.value === '') {
-		rangeUpdateButton.disabled = true;
-	} else {
-		rangeUpdateButton.disabled = false;
-		rangeUpdateButton.classList.add("enable");
-	}
-}
-
-function enableResetClear(e) {
-	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
-		resetGameButton.disabled = false;
-		clearGameButton.disabled = false;
-		resetGameButton.classList.add("enable");
-		clearGameButton.classList.add("enable");
-	} else {
-		resetGameButton.disabled = true;
-		clearGameButton.disabled = true;
-	}
-}
-
-function totalGuesses() {
-	guessTotal += 1;
-	return guessTotal;
-}
-
-function deleteCard() {
-	var removeCard = document.querySelector(".winner-card");
-	removeCard.classList.add("remove");
-}
-
-function generateRandomNumber() {
-   var min = parseInt(minValueInput.value) || 1;
-   var max = parseInt(maxValueInput.value) || 100;
-   return Math.floor(Math.random() * (max - min +1)) + min;
-}
-console.log(winNum);
-
-submitGuessButton.addEventListener('click', function(event) {
-	event.preventDefault();
-		if (guess1.value > winNum) {
-			tooHilo1.innerText = 'That\'s too high!';
-		} else if (guess1.value < winNum) {
-			tooHilo1.innerText = 'That\'s too low!';
-		} else {
-			tooHilo1.innerText = "BOOM!";
-			winner1();
-		} if (guess2.value > winNum) {
-			tooHilo2.innerText = 'That\'s too high!';
-		} else if (guess2.value < winNum) {
-			tooHilo2.innerText = 'That\'s too low!';
-		} else {
-			tooHilo2.innerText = "BOOM!";
-			winner2();
-		}
-});
-
-function valueReset() {
-	var inputs = document.getElementsByClassName('guess-box__forms')
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].reset();
-	}
-}
-
-function resetFields() {
-	valueReset();
-	guess2Output.innerText = "?";
-	guess1Output.innerText = "?";
-	scoreBoxName1.innerText = "Challenger 1";
-	scoreBoxName2.innerText = "Challenger 2";
-	tooHilo1.innerText = "How close is your guess?";
-	tooHilo2.innerText = "How close is your guess?";
-}
-
-function clearGame(event) {
-	event.preventDefault();
-	valueReset();
-	guess1Output.innerText = "?";
-	guess2Output.innerText = "?";
-	maxValueInput.value = "";
-	maxValueOutput.innerText = "100";
-	minValueInput.value = "";
-	minValueOutput.innerText = "1";
-	scoreBoxName1.innerText = "Challenger 1";
-	scoreBoxName2.innerText = "Challenger 2";
-	tooHilo1.innerText = "How close is your guess?";
-	tooHilo2.innerText = "How close is your guess?";
-	guessTotal = 0;
-	winNum = generateRandomNumber();
-}
-
-function updateRange(event) {
-	minValueOutput.innerText = minValueInput.value;
-	maxValueOutput.innerText = maxValueInput.value;
-		winNum = generateRandomNumber();
-		console.log(winNum);
-}
-
+// Functions for input varification
 
 function submitButtonFunctions(event) {
 	event.preventDefault();
@@ -161,13 +46,6 @@ function submitButtonFunctions(event) {
 		checkNameInput1();
 		checkNameInput2();
 		totalGuesses();
-}
-
-function updateNameGuess(event) {
-	guess2Output.innerText = guess2.value;
-	guess1Output.innerText = guess1.value;
-	scoreBoxName1.innerText = name1.value;
-	scoreBoxName2.innerText = name2.value;
 }
 
 function checkInputRange1() {
@@ -208,6 +86,136 @@ function checkNameInput2() {
 	}
 }
 
+// Functions for button enablement
+
+function checkGuessFields(e) {
+	if (guess1.value && guess2.value === '') {
+		submitGuessButton.disabled = true;
+	} else {
+		submitGuessButton.disabled = false;
+		submitGuessButton.classList.add("enable")
+	}
+} 
+
+function checkRangeFields(e) {
+	if (minValueInput.value && maxValueInput.value === '') {
+		rangeUpdateButton.disabled = true;
+	} else {
+		rangeUpdateButton.disabled = false;
+		rangeUpdateButton.classList.add("enable");
+	}
+}
+
+function enableResetClear(e) {
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
+		resetGameButton.classList.add("enable");
+		clearGameButton.classList.add("enable");
+	} else {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
+	}
+}
+
+// Value update functions
+
+function updateRange(event) {
+	minValueOutput.innerText = minValueInput.value;
+	maxValueOutput.innerText = maxValueInput.value;
+		winNum = generateRandomNumber();
+		console.log(winNum);
+}
+
+function updateNameGuess(event) {
+	guess2Output.innerText = guess2.value;
+	guess1Output.innerText = guess1.value;
+	scoreBoxName1.innerText = name1.value;
+	scoreBoxName2.innerText = name2.value;
+}
+
+// Input reset functions
+
+function valueReset() {
+	var inputs = document.getElementsByClassName('guess-box__forms')
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].reset();
+	}
+}
+
+function resetFields() {
+	valueReset();
+	guess2Output.innerText = "?";
+	guess1Output.innerText = "?";
+	scoreBoxName1.innerText = "Challenger 1";
+	scoreBoxName2.innerText = "Challenger 2";
+	tooHilo1.innerText = "How close is your guess?";
+	tooHilo2.innerText = "How close is your guess?";
+}
+
+function clearGame(event) {
+	event.preventDefault();
+	valueReset();
+	guess1Output.innerText = "?";
+	guess2Output.innerText = "?";
+	maxValueInput.value = "";
+	maxValueOutput.innerText = "100";
+	minValueInput.value = "";
+	minValueOutput.innerText = "1";
+	scoreBoxName1.innerText = "Challenger 1";
+	scoreBoxName2.innerText = "Challenger 2";
+	tooHilo1.innerText = "How close is your guess?";
+	tooHilo2.innerText = "How close is your guess?";
+	guessTotal = 0;
+	winNum = generateRandomNumber();
+	console.log(winNum);
+}
+
+// Random number generator
+
+function generateRandomNumber() {
+   var min = parseInt(minValueInput.value) || 1;
+   var max = parseInt(maxValueInput.value) || 100;
+   return Math.floor(Math.random() * (max - min +1)) + min;
+}
+console.log(winNum);
+
+// Total guess counter function
+
+function totalGuesses() {
+	guessTotal += 1;
+	return guessTotal;
+}
+
+// Delete winner card function
+
+function deleteCard() {
+	var removeCard = document.querySelector(".winner-card");
+	removeCard.classList.add("remove");
+}
+
+// Guess adjacency indicator
+
+submitGuessButton.addEventListener('click', function(event) {
+	event.preventDefault();
+		if (guess1.value > winNum) {
+			tooHilo1.innerText = 'That\'s too high!';
+		} else if (guess1.value < winNum) {
+			tooHilo1.innerText = 'That\'s too low!';
+		} else {
+			tooHilo1.innerText = "BOOM!";
+			winner1();
+		} if (guess2.value > winNum) {
+			tooHilo2.innerText = 'That\'s too high!';
+		} else if (guess2.value < winNum) {
+			tooHilo2.innerText = 'That\'s too low!';
+		} else {
+			tooHilo2.innerText = "BOOM!";
+			winner2();
+		}
+});
+
+// Winner card insertions
 
 function winner1() {
 	var column = document.querySelector(".content__right");
