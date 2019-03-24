@@ -1,0 +1,99 @@
+@media screen and (max-width: 1030px) {
+
+    .range-box__button {
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .range-box__form--1--input,
+    .range-box__form--2--input {
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .guess-box__input {
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .guess-box--button {
+        height: 30px;
+        font-size: 16px;
+        width: 31%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    height: 130px;
+  } 
+
+  .header__title {
+    font-size: 64px;
+  }
+
+  .header__subtitle__element.center {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+  .content {
+    flex-direction: column;
+  }
+  
+  .content__right {
+    width: 100%;
+  }
+  
+  .content__left {
+    border: 8px solid #808185;
+    width: 85%;
+    margin: auto;
+  }
+      .range-box__button {
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .range-box__form--1--input,
+    .range-box__form--2--input {
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .guess-box__input {
+         : 40px;
+        font-size: 20px;
+    }
+
+    .guess-box--button {
+        height: 40px;
+        font-size: 20px;
+        width: 31%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content__left {
+    width: 100%;
+    border: 0px;
+  }
+    .guess-box--button {
+      height: 40px;
+      font-size: 16px;
+      width: 31%;
+    }
+
+    .header {
+    height: 130px;
+    } 
+
+    .header__title {
+    font-size: 48px;
+    }
+
+    .header__subtitle__element.center {
+    font-weight: 300;
+    font-size: 18px;
+}
+}
