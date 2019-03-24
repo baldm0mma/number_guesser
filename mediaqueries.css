@@ -43,6 +43,9 @@
   }
 
   .content__right {
+    border-right: 8px solid #808185;
+    border-left: 8px solid #808185;
+    border-bottom: 8px solid #808185;
     width: 85%;
     margin: auto;
   }
@@ -50,7 +53,6 @@
   .content__left {
     border-right: 8px solid #808185;
     border-left: 8px solid #808185;
-    border-bottom: 8px solid #808185;
     width: 85%;
     margin: auto;
   }
@@ -75,9 +77,18 @@
     font-size: 20px;
     width: 31%;
   }
+
+  .winner-card {
+  }
 }
 
 @media screen and (max-width: 600px) {
+
+  .content__right {
+    border: none;
+    width: 100%;
+    margin: auto;
+  }
 
   .content__left {
     width: 100%;
