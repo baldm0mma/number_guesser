@@ -1,5 +1,3 @@
-
-
 var guess1 = document.querySelector(".guess-box__ch1--guess");
 var guess1Output = document.querySelector(".score-box__display--ch1--num");
 var guess2 = document.querySelector(".guess-box__ch2--guess");
@@ -171,7 +169,9 @@ function updateNameGuess(event) {
 }
 
 function checkInputRange1() {
-	if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
+  var lowRange = minValueInput.value || 1;
+  var highRange = maxValueInput.value || 100;
+  if (guess1.value > highRange || guess1.value < lowRange) {
 		guess1.classList.add("input-error");
 		alert('Please enter a number in the correct range');
 	} else {
@@ -180,7 +180,9 @@ function checkInputRange1() {
 }
 
 function checkInputRange2() {
-	if (guess2.value > maxValueInput.value || guess2.value < minValueInput.value) {
+  var lowRange = minValueInput.value || 1;
+  var highRange = maxValueInput.value || 100;
+	if (guess2.value > highRange || guess2.value < lowRange) {
 		guess2.classList.add("input-error");
 		alert('Please enter a number in the correct range');
 	} else {
