@@ -38,16 +38,6 @@ maxValueInput.addEventListener("keyup", checkRangeFields);
 
 // Functions for input varification
 
-function submitButtonFunctions(event) {
-	event.preventDefault();
-		updateNameGuess();
-		checkInputRange1();
-		checkInputRange2();
-		checkNameInput1();
-		checkNameInput2();
-		totalGuesses();
-}
-
 function checkInputRange1() {
 	if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
 		guess1.classList.add("input-error");
@@ -84,6 +74,16 @@ function checkNameInput2() {
 	} else {
 		name2.classList.remove("input-error");
 	}
+}
+
+function submitButtonFunctions(event) {
+	event.preventDefault();
+		updateNameGuess();
+		checkInputRange1();
+		checkInputRange2();
+		checkNameInput1();
+		checkNameInput2();
+		totalGuesses();
 }
 
 // Functions for button enablement
