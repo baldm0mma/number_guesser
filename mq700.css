@@ -34,7 +34,7 @@
 
   .header__subtitle__element.center {
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
 }
 
   .content {
@@ -46,7 +46,9 @@
   }
   
   .content__left {
-    width: 100%;
+    border: 8px solid #808185;
+    width: 85%;
+    margin: auto;
   }
       .range-box__button {
         height: 40px;
@@ -71,7 +73,11 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+    .content__left {
+    width: 100%;
+    border: 0px;
+  }
     .guess-box--button {
       height: 40px;
       font-size: 16px;
@@ -83,7 +89,7 @@
     } 
 
     .header__title {
-    font-size: 52px;
+    font-size: 48px;
     }
 
     .header__subtitle__element.center {
