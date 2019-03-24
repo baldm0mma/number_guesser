@@ -105,14 +105,11 @@
 
 .range-box__form--1,
 .range-box__form--2 {
-<<<<<<< HEAD
-    width: 40%;
-    flex-direction: column;
-    display: flex;
-=======
+  width: 40%;
+  flex-direction: column;
+  display: flex;
   color: blue;
   display: flex;
->>>>>>> db3a26afa4247bee6d28e1f730c6b4f57df4a76b
 }
 
 .range-box__form--1--input,
@@ -140,6 +137,11 @@
   color: white;
   font-weight: 600;
   font-size: 20px;
+}
+
+.range-box__button:focus {
+  background: #7F7F7F;
+  outline: none;
 }
 
 /*This is the beginning of the Guess card*/
@@ -242,6 +244,11 @@
   font-weight: 600;
   font-size: 20px;
   width: 31%;
+}
+
+.guess-box--button:focus {
+  background: #7F7F7F;
+  outline: none;
 }
 
 .input-error {
