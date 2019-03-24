@@ -105,9 +105,10 @@
     align-items: flex-end;
 }
 
-.range-box__form--1.
+.range-box__form--1,
 .range-box__form--2 {
-    color: blue;
+    width: 40%;
+    flex-direction: column;
     display: flex;
 }
 

@@ -174,8 +174,7 @@ function checkInputRange1() {
 		guess1.classList.add("input-error");
 		alert('Please enter a number in the correct range');
 	} else {
-		guess1.classList.remove("input-error");
-		guess1.classList.remove("input-error");
+		guess1.classList.remove("input-error"); 
 	}
 }
 
@@ -184,7 +183,6 @@ function checkInputRange2() {
 		guess2.classList.add("input-error");
 		alert('Please enter a number in the correct range');
 	} else {
-		guess2.classList.remove("input-error");
 		guess2.classList.remove("input-error");
 	}
 }
