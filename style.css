@@ -312,7 +312,6 @@
 /*This the beginning of the Winner card section*/
 
 .winner-card {
-  width: 88%;
   background: white;
   display: flex;
   flex-direction: column;
