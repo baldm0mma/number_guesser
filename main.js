@@ -14,7 +14,7 @@ var scoreBoxName1 = document.querySelector(".score-box__display--ch1--name")
 var scoreBoxName2 = document.querySelector(".score-box__display--ch2--name")
 var tooHilo1 = document.querySelector(".score-box__display--ch1--hilo");
 var tooHilo2 = document.querySelector(".score-box__display--ch2--hilo");
-var finalGuessTotal = 0;
+var guessTotal = 0;
 
 var winNum = generateRandomNumber();
 
@@ -23,6 +23,7 @@ var submitGuessButton = document.querySelector(".guess-box__submit");
 var rangeUpdateButton = document.querySelector(".range-box__button");
 var resetGameButton = document.querySelector(".guess-box__reset");
 var clearGameButton = document.querySelector(".guess-box__clear");
+// var deleteCardButton = document.querySelector(".winner-card__bottom--img");
 
 
 
@@ -31,6 +32,8 @@ rangeUpdateButton.addEventListener("click", updateRange);
 submitGuessButton.addEventListener("click", submitButtonFunctions);
 clearGameButton.addEventListener("click", clearGame);
 resetGameButton.addEventListener("click", resetFields);
+// deleteCardButton.addEventListener("click", deleteCard);
+
 
 
 guess1.addEventListener("keyup", checkGuessFields);
@@ -72,17 +75,15 @@ function enableResetClear(e) {
 	}
 }
 
+function totalGuesses() {
+	guessTotal += 1;
+	return guessTotal;
+}
 
-// $(function () {
-//     $('.guess-box__ch1--input, .guess-box__ch2--input, .guess-box__ch1--guess, .guess-box__ch2--guess').onkeyup(function () {
-//         if ($(this).val() == '') {
-//             $('.enable_on_input').prop('disabled', true);
-//         } else {
-//             $('.enable_on_input').prop('disabled', false);
-//         }
-//     });
-// });
-
+function deleteCard() {
+	var removeCard = document.querySelector(".winner-card");
+	removeCard.classList.add("remove");
+}
 
 function generateRandomNumber() {
    var min = parseInt(minValueInput.value) || 1;
@@ -110,11 +111,15 @@ submitGuessButton.addEventListener('click', function(event) {
 		}
 });
 
+function valueReset() {
+	var inputs = document.getElementsByClassName('guess-box__forms')
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].reset();
+	}
+}
+
 function resetFields() {
-	name1.value = "";
-	name2.value = "";
-	guess1.value = "";
-	guess2.value = "";
+	valueReset();
 	guess2Output.innerText = "?";
 	guess1Output.innerText = "?";
 	scoreBoxName1.innerText = "Challenger 1";
@@ -125,22 +130,19 @@ function resetFields() {
 
 function clearGame(event) {
 	event.preventDefault();
-	guess1.value = "";
+	valueReset();
 	guess1Output.innerText = "?";
-	guess2.value = "";
 	guess2Output.innerText = "?";
 	maxValueInput.value = "";
 	maxValueOutput.innerText = "100";
 	minValueInput.value = "";
 	minValueOutput.innerText = "1";
-	name1.value = "";
-	name2.value = "";
 	scoreBoxName1.innerText = "Challenger 1";
 	scoreBoxName2.innerText = "Challenger 2";
 	tooHilo1.innerText = "How close is your guess?";
 	tooHilo2.innerText = "How close is your guess?";
-		winNum = generateRandomNumber();
-		console.log(winNum);
+	guessTotal = 0;
+	winNum = generateRandomNumber();
 }
 
 function updateRange(event) {
@@ -158,6 +160,7 @@ function submitButtonFunctions(event) {
 		checkInputRange2();
 		checkNameInput1();
 		checkNameInput2();
+		totalGuesses();
 }
 
 function updateNameGuess(event) {
@@ -165,8 +168,6 @@ function updateNameGuess(event) {
 	guess1Output.innerText = guess1.value;
 	scoreBoxName1.innerText = name1.value;
 	scoreBoxName2.innerText = name2.value;
-		console.log(name1.value);
-		console.log(name2.value);
 }
 
 function checkInputRange1() {
@@ -209,43 +210,45 @@ function checkNameInput2() {
 function winner1() {
 	var column = document.querySelector(".content__right");
 	var winnerCard = `<div class="winner-card">
-					   <div class="winner-card__top">
-						 <p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
-						 <p class="winner-card__top--vs">vs</p>
-						 <p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
-					   </div>
-					   <div class="winner-card__mid">
-						 <p class="winner-card__mid--name winner-card--name">${name1.value}</p>
-						 <p class="winner-card__mid--win">Winner</p>
-					   </div>
-					   <div class="winner-card__bottom">
-						 <p class="winner-card__bottom--guesses">X Guesses</p>
-						 <p class="winner-card__bottom--time">X Minues</p>
-						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
-					   </div>
-				     </div>`;
+											<div class="winner-card__top">
+												<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
+												<p class="winner-card__top--vs">vs</p>
+												<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
+											</div>
+											<div class="winner-card__mid">
+												<p class="winner-card__mid--name winner-card--name">${name1.value}</p>
+												<p class="winner-card__mid--win">Winner</p>
+											</div>
+											<div class="winner-card__bottom">
+												<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
+												<p class="winner-card__bottom--time">X Minues</p>
+												<img class="winner-card__bottom--img" src="images/close_button.png" alt="remove_button">
+											</div>
+										</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
+	guessTotal = 0;
 }
 
 function winner2() {
 	var column = document.querySelector(".content__right");
 	var winnerCard = `<div class="winner-card">
-					   <div class="winner-card__top">
-						 <p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
-						 <p class="winner-card__top--vs">vs</p>
-						 <p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
-					   </div>
-					   <div class="winner-card__mid">
-						 <p class="winner-card__mid--name winner-card--name">${name2.value}</p>
-						 <p class="winner-card__mid--win">Winner</p>
-					   </div>
-					   <div class="winner-card__bottom">
-						 <p class="winner-card__bottom--guesses">X Guesses</p>
-						 <p class="winner-card__bottom--time">X Minues</p>
-						 <img  class="winner-card__bottom--img"src="images/close_button.png" alt="remove_button">
-					   </div>
-				     </div>`;
+											<div class="winner-card__top">
+												<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
+												<p class="winner-card__top--vs">vs</p>
+												<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
+											</div>
+											<div class="winner-card__mid">
+												<p class="winner-card__mid--name winner-card--name">${name2.value}</p>
+												<p class="winner-card__mid--win">Winner</p>
+											</div>
+												<div class="winner-card__bottom">
+												<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
+												<p class="winner-card__bottom--time">X Minues</p>
+												<img class="winner-card__bottom--img" src="images/close_button.png" alt="remove_button">
+											</div>
+										</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
+	guessTotal = 0;
 }
 
 
