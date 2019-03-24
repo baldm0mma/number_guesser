@@ -43,11 +43,14 @@
   }
 
   .content__right {
-    width: 100%;
+    width: 85%;
+    margin: auto;
   }
 
   .content__left {
-    border: 8px solid #808185;
+    border-right: 8px solid #808185;
+    border-left: 8px solid #808185;
+    border-bottom: 8px solid #808185;
     width: 85%;
     margin: auto;
   }
