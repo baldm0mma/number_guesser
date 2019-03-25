@@ -107,14 +107,14 @@ function checkRangeFields(e) {
 }
 
 function enableResetClear(e) {
-	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
-		resetGameButton.disabled = false;
-		clearGameButton.disabled = false;
+	if (name1.value && name2.value && guess1.value && guess2.value === '') {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
 		resetGameButton.classList.add("enable");
 		clearGameButton.classList.add("enable");
 	} else {
-		resetGameButton.disabled = true;
-		clearGameButton.disabled = true;
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
 	}
 }
 
