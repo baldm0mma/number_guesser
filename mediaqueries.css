@@ -30,7 +30,7 @@
   } 
 
   .header__title {
-    font-size: 64px;
+    font-size: 48px;
   }
 
   .header__subtitle__element.center {
@@ -43,43 +43,117 @@
   }
 
   .content__right {
-    border-right: 8px solid #808185;
-    border-left: 8px solid #808185;
-    border-bottom: 8px solid #808185;
-    width: 85%;
+    width: 100%;
     margin: auto;
   }
 
   .content__left {
-    border-right: 8px solid #808185;
-    border-left: 8px solid #808185;
-    width: 85%;
+    width: 100%;
     margin: auto;
   }
   .range-box__button {
-    height: 40px;
-    font-size: 20px;
+    height: 35px;
+    font-size: 2.75vw;
   }
 
   .range-box__form--1--input,
   .range-box__form--2--input {
-    height: 40px;
+    height: 35px;
     font-size: 20px;
   }
 
   .guess-box__input {
-    height: 40px;
+    height: 35px;
     font-size: 20px;
   }
 
   .guess-box--button {
-    height: 40px;
-    font-size: 20px;
+    height: 35px;
+    font-size: 3vw;
     width: 31%;
-  }t
+  }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 420px) {
+
+  .header {
+    height: 100px;
+  } 
+
+  .header__title {
+    font-size: 32px;
+  }
+
+  .header__subtitle__element.center {
+    font-weight: 300;
+    font-size: 10px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .content__right {
+    width: 100%;
+    margin: auto;
+  }
+
+  .content__left {
+    width: 100%;
+    margin: auto;
+  }
+
+  .range-box__title{
+    font-size: 20px;
+  }
+
+  .guess-box__range {
+    font-size: 16px;
+  }
+
+  .range-box__button {
+    height: 20px;
+    font-size: 14px;
+  }
+
+  .range-box__form--1--input,
+  .range-box__form--2--input {
+    height: 20px;
+    width: 60%;
+    font-size: 20px;
+  }
+
+  .guess-box--name {
+    font-size: 20px;
+  }
+
+.range-box__form--1--txt,
+.range-box__form--2--txt,
+.guess-box--label,
+.score-box__display--hilo {
+  font-size: 16px;
+}
+
+  .guess-box__input {
+    height: 20px;
+    font-size: 20px;
+  }
+
+  .guess-box--button {
+    height: 20px;
+    font-size: 3vw;
+    width: 31%;
+  }
+
+  .score-box__title {
+    font-size: 16px;
+  }
+
+  .score-box__display--name {
+    font-size: 16px;
+  }
+
+/*@media screen and (max-width: 600px) {
 
   .content__right {
     border: none;
@@ -108,5 +182,5 @@
   .header__subtitle__element.center {
     font-weight: 300;
     font-size: 18px;
-  }
+  }*/
 }
