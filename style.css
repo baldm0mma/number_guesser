@@ -144,6 +144,11 @@
   outline: none;
 }
 
+.range-box__button.enable:hover {
+  background: #EC458B;
+  outline: none;
+}
+
 /*This is the beginning of the Guess card*/
 
 .guess-box {
@@ -248,6 +253,11 @@
 
 .guess-box--button:focus {
   background: #7F7F7F;
+  outline: none;
+}
+
+.guess-box--button.enable:hover {
+  background: #EC458B;
   outline: none;
 }
 
