@@ -89,33 +89,48 @@ function submitButtonFunctions(event) {
 // Functions for button enablement
 
 function checkGuessFields(e) {
-	if (guess1.value && guess2.value === '') {
-		submitGuessButton.disabled = true;
-	} else {
+	if (guess1.value && guess2.value !== '') {
 		submitGuessButton.disabled = false;
-		submitGuessButton.classList.add("enable")
+		submitGuessButton.classList.add("enable");
+	} else {
+		submitGuessButton.disabled = true;
+		submitGuessButton.classList.remove("enable");
 	}
 } 
 
 function checkRangeFields(e) {
-	if (minValueInput.value && maxValueInput.value === '') {
-		rangeUpdateButton.disabled = true;
-	} else {
+	if (minValueInput.value && maxValueInput.value !== '') {
 		rangeUpdateButton.disabled = false;
 		rangeUpdateButton.classList.add("enable");
+	} else {
+		rangeUpdateButton.disabled = true;
+		rangeUpdateButton.classList.remove("enable");
 	}
 }
 
 function enableResetClear(e) {
-	if (name1.value && name2.value && guess1.value && guess2.value === '') {
-		resetGameButton.disabled = true;
-		clearGameButton.disabled = true;
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
 		resetGameButton.classList.add("enable");
 		clearGameButton.classList.add("enable");
 	} else {
-		resetGameButton.disabled = false;
-		clearGameButton.disabled = false;
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
+		resetGameButton.classList.remove("enable");
+		clearGameButton.classList.remove("enable");
 	}
+}
+
+function disableButtonsOnClick() {
+	submitGuessButton.disabled = true;
+	submitGuessButton.classList.remove("enable");
+	resetGameButton.disabled = true;
+	resetGameButton.classList.remove("enable");
+	clearGameButton.disabled = true;
+	clearGameButton.classList.remove("enable");
+	rangeUpdateButton.disabled = true;
+	rangeUpdateButton.classList.remove("enable");
 }
 
 // Value update functions
@@ -137,7 +152,7 @@ function updateNameGuess(event) {
 // Input reset functions
 
 function valueReset() {
-	var inputs = document.getElementsByClassName('guess-box__forms')
+	var inputs = document.getElementsByClassName('guess-box__forms');
 	for (var i = 0; i < inputs.length; i++) {
 		inputs[i].reset();
 	}
@@ -151,6 +166,7 @@ function resetFields() {
 	scoreBoxName2.innerText = "Challenger 2";
 	tooHilo1.innerText = "How close is your guess?";
 	tooHilo2.innerText = "How close is your guess?";
+	disableButtonsOnClick();
 }
 
 function clearGame(event) {
@@ -166,6 +182,7 @@ function clearGame(event) {
 	scoreBoxName2.innerText = "Challenger 2";
 	tooHilo1.innerText = "How close is your guess?";
 	tooHilo2.innerText = "How close is your guess?";
+	disableButtonsOnClick()
 	guessTotal = 0;
 	winNum = generateRandomNumber();
 	console.log(winNum);
