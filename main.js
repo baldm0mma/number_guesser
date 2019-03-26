@@ -38,25 +38,25 @@ maxValueInput.addEventListener("keyup", checkRangeFields);
 
 // Functions for input varification
 
-function checkInputRange1() {
-	if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
-		guess1.classList.add("input-error");
-		alert('Please enter a number in the correct range');
-	} else {
-		guess1.classList.remove("input-error");
-		guess1.classList.remove("input-error");
-	}
-}
+// function checkInputRange1() {
+// 	if (guess1.value > maxValueInput.value || guess1.value < minValueInput.value) {
+// 		guess1.classList.add("input-error");
+// 		alert('Please enter a number in the correct range');
+// 	} else {
+// 		guess1.classList.remove("input-error");
+// 		guess1.classList.remove("input-error");
+// 	}
+// }
 
-function checkInputRange2() {
-	if (guess2.value > maxValueInput.value || guess2.value < minValueInput.value) {
-		guess2.classList.add("input-error");
-		alert('Please enter a number in the correct range');
-	} else {
-		guess2.classList.remove("input-error");
-		guess2.classList.remove("input-error");
-	}
-}
+// function checkInputRange2() {
+// 	if (guess2.value > maxValueInput.value || guess2.value < minValueInput.value) {
+// 		guess2.classList.add("input-error");
+// 		alert('Please enter a number in the correct range');
+// 	} else {
+// 		guess2.classList.remove("input-error");
+// 		guess2.classList.remove("input-error");
+// 	}
+// }
 
 function checkNameInput1() {
 	if (name1.value === '') {
@@ -182,24 +182,25 @@ console.log(winNum);
 
 // Total guess counter function
 function checkInputRange1() {
-  var lowRange = minValueInput.value || 1;
-  var highRange = maxValueInput.value || 100;
+  var lowRange = parseInt(minValueInput.value) || 1;
+  var highRange = parseInt(maxValueInput.value) || 100;
   if (guess1.value > highRange || guess1.value < lowRange) {
 		guess1.classList.add("input-error");
-		alert('Please enter a number in the correct range');
+	alert('Please enter a number in the correct range');
 	} else {
 		guess1.classList.remove("input-error"); 
 	}
 }
 
 function checkInputRange2() {
-  var lowRange = minValueInput.value || 1;
-  var highRange = maxValueInput.value || 100;
+  var lowRange = parseInt(minValueInput.value) || 1;
+  var highRange = parseInt(maxValueInput.value) || 100;
 	if (guess2.value > highRange || guess2.value < lowRange) {
 		guess2.classList.add("input-error");
 		alert('Please enter a number in the correct range');
 	} else {
 		guess2.classList.remove("input-error");
+
 	}
 }
 
