@@ -1,5 +1,4 @@
 * {
-  /*border: 1px solid black;*/
   font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
@@ -105,7 +104,6 @@
 
 .range-box__form--1,
 .range-box__form--2 {
-  color: blue;
   display: flex;
   display: flex;
   flex-direction: column;
@@ -293,7 +291,6 @@
 
 .score-box__display {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   text-align: center;
 }
