@@ -1,24 +1,24 @@
 @media screen and (max-width: 1030px) {
 
-  .range-box__button {
-    height: 30px;
-    font-size: 16px;
-  }
-
   .range-box__form--1--input,
   .range-box__form--2--input {
-    height: 30px;
     font-size: 16px;
+    height: 30px;
+  }
+  
+  .range-box__button {
+    font-size: 16px;
+    height: 30px;
   }
 
   .guess-box__input {
-    height: 30px; 
     font-size: 16px;
+    height: 30px; 
   }
 
   .guess-box--button {
-    height: 30px;
     font-size: 16px;
+    height: 30px;
     width: 31%;
   }
 }
@@ -34,12 +34,12 @@
   }
 
   .header__subtitle {
-  width: 45%;
+    width: 45%;
   }
 
   .header__subtitle__element.center {
-    font-weight: 300;
     font-size: 16px;
+    font-weight: 300;
   }
 
   .content {
@@ -47,34 +47,35 @@
   }
 
   .content__right {
-    width: 100%;
     margin: auto;
+    width: 100%;
   }
 
   .content__left {
-    width: 100%;
-    margin: auto;
     border: none;
-  }
-  .range-box__button {
-    height: 35px;
-    font-size: 2.75vw;
+    margin: auto;
+    width: 100%;
   }
 
   .range-box__form--1--input,
   .range-box__form--2--input {
-    height: 35px;
     font-size: 20px;
+    height: 35px;
+  }
+
+  .range-box__button {
+    font-size: 2.75vw;
+    height: 35px;
   }
 
   .guess-box__input {
-    height: 35px;
     font-size: 20px;
+    height: 35px;
   }
 
   .guess-box--button {
-    height: 35px;
     font-size: 3vw;
+    height: 35px;
     width: 31%;
   }
 }
@@ -95,16 +96,16 @@
   }
 
   .header__subtitle__element.center {
-    font-weight: 300;
     font-size: 10px;
+    font-weight: 300;
   }
 
   .header__subtitle__element.left,
   .header__subtitle__element.right {
     background: white;
-    width: 15%;
     flex-grow: 3;
     height: 3%;
+    width: 15%;
   } 
 
   .content {
@@ -112,13 +113,13 @@
   }
 
   .content__right {
-    width: 100%;
     margin: auto;
+    width: 100%;
   }
 
   .content__left {
-    width: 100%;
     margin: auto;
+    width: 100%;
   }
 
   .range-box {
@@ -131,39 +132,31 @@
   }
 
   .range-box__form {
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
+
   .range-box__form--1,
   .range-box__form--2 {
-    width: 100%;
     margin: 10px 0px;
-  }
-
-
-
-  .guess-box__range {
-    font-size: 16px;
+    width: 100%;
   }
 
   .range-box__button {
     align-self: flex-start;
-    width: 100px;
+    font-size: 14px;
     height: 30px;
-    font-size: 14px;
     margin-top: 12px;
-  }
-
-  .range-box__form--1--input,
-  .range-box__form--2--input {
-    height: 25px;
-    width: 95%;
-    font-size: 14px;
+    width: 100px;
   }
 
   .guess-box--name {
     font-size: 20px;
+  }
+
+  .guess-box__range {
+    font-size: 16px;
   }
 
   .range-box__form--1--txt,
@@ -191,31 +184,31 @@
     flex-direction: column;
   }
 
+  .guess-box__forms {
+    margin: 10px 0px;
+    width: 100%;
+  }
+
   .guess-box__ch2__forms {
     display: flex;
     flex-direction: column;
   }
 
-  .guess-box__forms {
-    width: 100%;
-    margin: 10px 0px;
-  }
-
   .guess-box__input {
+    font-size: 14px;
     height: 25px;
-    font-size: 14px;
-  }
-
-  .guess-box--button {
-    height: 30px;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 10px;
   }
 
   .guess-box__three-buttons {
-    margin-top: 5px;
     flex-direction: column;
+    margin-top: 5px;
+  }
+
+  .guess-box--button {
+    font-size: 14px;
+    height: 30px;
+    margin-bottom: 10px;
+    width: 100%;
   }
 
   .score-box__title {
@@ -223,9 +216,9 @@
   }
 
   .score-box__display {
+    align-items: center;
     flex-direction: column;
     text-align: center;
-    align-items: center;
   }
 
   .score-box__display--box {
@@ -249,9 +242,9 @@
 
   .score-box--divider {
     background: #D1D2D4;
-    width: 90%;
     height: 2px;  
     margin: 10px 0px;
+    width: 90%;
   }
 
   .winner-card {
@@ -259,25 +252,25 @@
     padding: 10px;
   }
 
+  .winner-card__top {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .winner-card__top--vs {
+    align-self: center;
+    font-size: 8px;
+  }
+
   .winner-card__mid {
-    padding: 20px 0px;
     margin: 5px 0px;
+    padding: 20px 0px;
   }
 
   .winner-card__mid--name {
     font-size: 28px;
     font-weight: 800;
     text-align: center;
-  }
-
-  .winner-card__top {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .winner-card__top--vs {
-    align-self: center;
-    font-size: 8px;
   }
 
   .winner-card__mid--win {

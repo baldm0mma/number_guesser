@@ -94,21 +94,21 @@ function checkNameInput2() {
 }
 
 function guessHint() {
-		if (guess1.value > winNum) {
-			tooHilo1.innerText = 'That\'s too high!';
-		} else if (guess1.value < winNum) {
-			tooHilo1.innerText = 'That\'s too low!';
-		} else {
-			tooHilo1.innerText = 'BOOM!';
-			winner1();
-		} if (guess2.value > winNum) {
-			tooHilo2.innerText = 'That\'s too high!';
-		} else if (guess2.value < winNum) {
-			tooHilo2.innerText = 'That\'s too low!';
-		} else {
-			tooHilo2.innerText = 'BOOM!';
-			winner2();
-		}
+	if (guess1.value > winNum) {
+		tooHilo1.innerText = 'That\'s too high!';
+	} else if (guess1.value < winNum) {
+		tooHilo1.innerText = 'That\'s too low!';
+	} else {
+		tooHilo1.innerText = 'BOOM!';
+		winner1();
+	} if (guess2.value > winNum) {
+		tooHilo2.innerText = 'That\'s too high!';
+	} else if (guess2.value < winNum) {
+		tooHilo2.innerText = 'That\'s too low!';
+	} else {
+		tooHilo2.innerText = 'BOOM!';
+		winner2();
+	}
 }
 
 function scoreBoxValidation() {
