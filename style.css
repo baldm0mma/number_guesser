@@ -255,6 +255,17 @@
   border: 2px solid #DD1972;
 }
 
+.warning {
+  color: #DD1972;
+  font-size: 16px;
+}
+
+.warning-img {
+  height: 20px;
+  padding-top: 5px;
+  width: 20px;
+}
+
 .enable {
   background: #7F7F7F;
   cursor: pointer;
