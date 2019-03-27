@@ -209,7 +209,6 @@ function guessDisplayBox(event) {
 		} else {
 			tooHilo1.innerText = 'BOOM!';
 			winner1();
-			clearGame();
 		} if (guess2.value > winNum) {
 			tooHilo2.innerText = 'That\'s too high!';
 		} else if (guess2.value < winNum) {
@@ -217,49 +216,50 @@ function guessDisplayBox(event) {
 		} else {
 			tooHilo2.innerText = 'BOOM!';
 			winner2();
-			clearGame();
 		}
 }
 
 function winner1() {
 	var column = document.querySelector('.content__right');
-	var winnerCard = `<div class="winner-card">
-											<div class="winner-card__top">
-												<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
-												<p class="winner-card__top--vs">vs</p>
-												<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
-											</div>
-											<div class="winner-card__mid">
-												<p class="winner-card__mid--name winner-card--name">${name1.value}</p>
-												<p class="winner-card__mid--win">Winner</p>
-											</div>
-											<div class="winner-card__bottom">
-												<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
-												<p class="winner-card__bottom--time">X Minues</p>
-												<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
-											</div>
-										</div>`;
+	var winnerCard = 
+		`<div class="winner-card">
+			<div class="winner-card__top">
+				<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
+				<p class="winner-card__top--vs">vs</p>
+				<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
+			</div>
+			<div class="winner-card__mid">
+				<p class="winner-card__mid--name winner-card--name">${name1.value}</p>
+				<p class="winner-card__mid--win">Winner</p>
+			</div>
+			<div class="winner-card__bottom">
+				<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
+				<p class="winner-card__bottom--time">X Minues</p>
+				<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
+			</div>
+		</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
 }
 
 function winner2() {
 	var column = document.querySelector(".content__right");
-	var winnerCard = `<div class="winner-card">
-											<div class="winner-card__top">
-												<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
-												<p class="winner-card__top--vs">vs</p>
-												<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
-											</div>
-											<div class="winner-card__mid">
-												<p class="winner-card__mid--name winner-card--name">${name2.value}</p>
-												<p class="winner-card__mid--win">Winner</p>
-											</div>
-											<div class="winner-card__bottom">
-												<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
-												<p class="winner-card__bottom--time">X Minues</p>
-												<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
-											</div>
-										</div>`;
+	var winnerCard = 
+		`<div class="winner-card">
+			<div class="winner-card__top">
+				<p class="winner-card__top--ch1 winner-card--name">${name1.value}</p>
+				<p class="winner-card__top--vs">vs</p>
+				<p class="winner-card__top--ch2 winner-card--name">${name2.value}</p>
+			</div>
+			<div class="winner-card__mid">
+				<p class="winner-card__mid--name winner-card--name">${name2.value}</p>
+				<p class="winner-card__mid--win">Winner</p>
+			</div>
+			<div class="winner-card__bottom">
+				<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
+				<p class="winner-card__bottom--time">X Minues</p>
+				<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
+			</div>
+		</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
 }
 
@@ -268,9 +268,6 @@ function deleteCardEvent(event) {
 		event.target.parentElement.parentElement.remove();
 	}
 }
-
-
-
 
 
 
