@@ -19,6 +19,8 @@ var submitGuessButton = document.querySelector('.guess-box__submit');
 var tooHilo1 = document.querySelector('.score-box__display--ch1--hilo');
 var tooHilo2 = document.querySelector('.score-box__display--ch2--hilo');
 var winNum = generateRandomNumber();
+var highRange = parseInt(maxValueInput.value) || 100;
+var lowRange = parseInt(minValueInput.value) || 1;
 
 clearGameButton.addEventListener('click', clearGame);
 guess1.addEventListener('keyup', checkGuessFields);
@@ -36,13 +38,11 @@ submitGuessButton.addEventListener('click', submitButtonFunctions);
 
 function submitButtonFunctions(event) {
 	event.preventDefault();
-	guessCounter();
 	checkInputRange1();
 	checkInputRange2();
 	checkNameInput1();
 	checkNameInput2();
-	guessDisplayBox();
-	updateScoreBox();
+	scoreBoxValidation();
 }
 
 function guessCounter() {
@@ -50,47 +50,50 @@ function guessCounter() {
 }
 
 function checkInputRange1() {
-  var lowRange = parseInt(minValueInput.value) || 1;
-  var highRange = parseInt(maxValueInput.value) || 100;
+  var target = document.querySelector('.warning2');
   if (guess1.value > highRange || guess1.value < lowRange) {
 		guess1.classList.add('input-error');
-	alert('Please enter a number in the correct range');
+		validationWarning(target);
 	} else {
-		guess1.classList.remove('input-error'); 
+		guess1.classList.remove('input-error');
+		removeValidationWarning(target);
 	}
 }
 
 function checkInputRange2() {
-  var lowRange = parseInt(minValueInput.value) || 1;
-  var highRange = parseInt(maxValueInput.value) || 100;
+	var target = document.querySelector('.warning4');
 	if (guess2.value > highRange || guess2.value < lowRange) {
 		guess2.classList.add('input-error');
-		alert('Please enter a number in the correct range');
+		validationWarning(target);
 	} else {
 		guess2.classList.remove('input-error');
-
+		removeValidationWarning(target);
 	}
 }
 
 function checkNameInput1() {
+	var target = document.querySelector('.warning1');
 	if (name1.value === '') {
 		name1.classList.add('input-error');
-		alert('Please enter a name');
+		validationWarning(target);
 	} else {
 		name1.classList.remove('input-error');
+		removeValidationWarning(target);
 	}
 }
 
 function checkNameInput2() {
+	var target = document.querySelector('.warning3');
 	if (name2.value === '') {
 		name2.classList.add('input-error');
-		alert('Please enter a name');
+		validationWarning(target);
 	} else {
 		name2.classList.remove('input-error');
+		removeValidationWarning(target);
 	}
 }
 
-function guessDisplayBox() {
+function guessHint() {
 		if (guess1.value > winNum) {
 			tooHilo1.innerText = 'That\'s too high!';
 		} else if (guess1.value < winNum) {
@@ -108,44 +111,65 @@ function guessDisplayBox() {
 		}
 }
 
-function updateScoreBox() {
+function scoreBoxValidation() {
+	if (guess1.value >= lowRange && 
+	guess1.value <= highRange && 
+	guess2.value >= lowRange && 
+	guess2.value <= highRange && 
+	name1.value !== '' && 
+	name2.value !== '') {
+		populate();
+		guessCounter();
+	}
+}
+
+function populate() {
 	guess1Output.innerText = guess1.value;
 	guess2Output.innerText = guess2.value;
 	scoreBoxName1.innerText = name1.value;
 	scoreBoxName2.innerText = name2.value;
+	guessHint();
+}
+
+function validationWarning(target) {
+	target.innerHTML = '<img src=\'images/alert_icon.png\' alt=\'warning icon\' class=\'warning-img\'> Please enter a valid input';
+}
+
+function removeValidationWarning(target) {
+	target.innerText = '';
 }
 
 function checkGuessFields() {
 	if (guess1.value && guess2.value !== '') {
-		submitGuessButton.disabled = false;
 		submitGuessButton.classList.add('enable');
+		submitGuessButton.disabled = false;
 	} else {
-		submitGuessButton.disabled = true;
 		submitGuessButton.classList.remove('enable');
+		submitGuessButton.disabled = true;
 	}
 } 
 
 function checkRangeFields() {
 	if (minValueInput.value && maxValueInput.value !== '') {
-		rangeUpdateButton.disabled = false;
 		rangeUpdateButton.classList.add('enable');
+		rangeUpdateButton.disabled = false;
 	} else {
-		rangeUpdateButton.disabled = true;
 		rangeUpdateButton.classList.remove('enable');
+		rangeUpdateButton.disabled = true;
 	}
 }
 
 function enableResetClear() {
 	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
-		resetGameButton.disabled = false;
+		clearGameButton.classList.add('enable');
 		clearGameButton.disabled = false;
 		resetGameButton.classList.add('enable');
-		clearGameButton.classList.add('enable');
+		resetGameButton.disabled = false;
 	} else {
-		resetGameButton.disabled = true;
+		clearGameButton.classList.remove('enable');
 		clearGameButton.disabled = true;
 		resetGameButton.classList.remove('enable');
-		clearGameButton.classList.remove('enable');
+		resetGameButton.disabled = true;
 	}
 }
 
@@ -190,7 +214,7 @@ function clearGame() {
 	tooHilo2.innerText = 'How close is your guess?';
 	disableButtonsOnClick();
 	borderErrorClear();
-	guessesMade = 0;
+	guessesMade = 1;
 	winNum = generateRandomNumber();
 	console.log(winNum);
 }
@@ -199,6 +223,8 @@ function valueReset() {
 	var inputs = document.getElementsByClassName('guess-box__forms');
 	for (var i = 0; i < inputs.length; i++) {
 		inputs[i].reset();
+		submitGuessButton.classList.remove('enable');
+		submitGuessButton.disabled = true;
 	}
 }
 

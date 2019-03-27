@@ -263,6 +263,17 @@
   border: 2px solid #DD1972;
 }
 
+.warning {
+  color: #DD1972;
+  font-size: 16px;
+}
+
+.warning-img {
+  height: 20px;
+  padding-top: 5px;
+  width: 20px;
+}
+
 /*This placement is specifically to assure that the enable button color fires farther down the cascade then all the buttons it effects*/
 
 .enable {
