@@ -33,6 +33,10 @@
     font-size: 48px;
   }
 
+  .header__subtitle {
+  width: 45%;
+  }
+
   .header__subtitle__element.center {
     font-weight: 300;
     font-size: 16px;
@@ -82,12 +86,25 @@
 
   .header__title {
     font-size: 32px;
+    margin-top: 15px;
+  }
+
+  .header__subtitle {
+    width: 80%;
   }
 
   .header__subtitle__element.center {
     font-weight: 300;
     font-size: 10px;
   }
+
+  .header__subtitle__element.left,
+  .header__subtitle__element.right {
+    background: white;
+    width: 15%;
+    flex-grow: 3;
+    height: 3%;
+  } 
 
   .content {
     flex-direction: column;
@@ -131,7 +148,7 @@
 .range-box__form--2--txt,
 .guess-box--label,
 .score-box__display--hilo {
-  font-size: 16px;
+  font-size: 14px;
 }
 
   .guess-box__input {
@@ -151,6 +168,16 @@
 
   .score-box__display--name {
     font-size: 16px;
+  }
+
+  .score-box__display--num {
+    font-size: 16vw;
+    font-weight: 800;
+
+  }
+
+  .score-box__display--guess {
+    font-size: 14px;
   }
 
 /*@media screen and (max-width: 600px) {
