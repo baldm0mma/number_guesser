@@ -4,8 +4,6 @@
   padding: 0;
 }
 
-/*This is the beginning of the Header section*/
-
 .header {
   align-items: center;
   background: #404042;
@@ -51,8 +49,6 @@
   height: 5%;
 }
 
-/*This is the beginning of the Content section*/
-
 .content {
   display: flex;
 }
@@ -72,8 +68,6 @@
   flex-direction: column;
   width: 50%;
 }
-
-/*This is the beginning of the Range card*/
 
 .range-box {
   background: #FFF;
@@ -146,8 +140,6 @@
   background: #EC458B;
   outline: none;
 }
-
-/*This is the beginning of the Guess card*/
 
 .guess-box {
   background: #FFF;
@@ -263,14 +255,10 @@
   border: 2px solid #DD1972;
 }
 
-/*This placement is specifically to assure that the enable button color fires farther down the cascade then all the buttons it effects*/
-
 .enable {
   background: #7F7F7F;
   cursor: pointer;
 }
-
-/*This is the beginning of the Score box*/
 
 .score-box {
   background: white;
@@ -322,8 +310,6 @@
   font-size: 18px;
   font-weight: 200;
 }
-
-/*This the beginning of the Winner card section*/
 
 .winner-card {
   background: white;
