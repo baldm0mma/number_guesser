@@ -3,7 +3,7 @@ var guess1 = document.querySelector('.guess-box__ch1--guess');
 var guess1Output = document.querySelector('.score-box__display--ch1--num');
 var guess2 = document.querySelector('.guess-box__ch2--guess');
 var guess2Output = document.querySelector('.score-box__display--ch2--num');
-var guessTotal = 1;
+var guessesMade = 1;
 var maxValueInput = document.querySelector('.range-box__form--2--input');
 var maxValueOutput = document.querySelector('.guess-box__range--high');
 var minValueInput = document.querySelector('.range-box__form--1--input');
@@ -34,145 +34,20 @@ resetGameButton.addEventListener('click', resetFields);
 rightSide.addEventListener('click', deleteCardEvent);
 submitGuessButton.addEventListener('click', submitButtonFunctions);
 
-function checkNameInput1() {
-	if (name1.value === '') {
-		name1.classList.add('input-error');
-		alert('Please enter a name.');
-	} else {
-		name1.classList.remove('input-error');
-	}
-}
-
-function checkNameInput2() {
-	if (name2.value === '') {
-		name2.classList.add('input-error');
-		alert('Please enter a name.');
-	} else {
-		name2.classList.remove('input-error');
-	}
-}
-
 function submitButtonFunctions(event) {
 	event.preventDefault();
-	updateNameGuess();
+	guessCounter();
 	checkInputRange1();
 	checkInputRange2();
 	checkNameInput1();
 	checkNameInput2();
 	guessDisplayBox();
-	addGuess();
+	updateScoreBox();
 }
 
-function checkGuessFields(e) {
-	if (guess1.value && guess2.value !== '') {
-		submitGuessButton.disabled = false;
-		submitGuessButton.classList.add('enable');
-	} else {
-		submitGuessButton.disabled = true;
-		submitGuessButton.classList.remove('enable');
-	}
-} 
-
-function checkRangeFields(e) {
-	if (minValueInput.value && maxValueInput.value !== '') {
-		rangeUpdateButton.disabled = false;
-		rangeUpdateButton.classList.add('enable');
-	} else {
-		rangeUpdateButton.disabled = true;
-		rangeUpdateButton.classList.remove('enable');
-	}
+function guessCounter() {
+	guessesMade += 1;
 }
-
-function enableResetClear(e) {
-	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
-		resetGameButton.disabled = false;
-		clearGameButton.disabled = false;
-		resetGameButton.classList.add('enable');
-		clearGameButton.classList.add('enable');
-	} else {
-		resetGameButton.disabled = true;
-		clearGameButton.disabled = true;
-		resetGameButton.classList.remove('enable');
-		clearGameButton.classList.remove('enable');
-	}
-}
-
-function disableButtonsOnClick() {
-	submitGuessButton.disabled = true;
-	submitGuessButton.classList.remove('enable');
-	resetGameButton.disabled = true;
-	resetGameButton.classList.remove('enable');
-	clearGameButton.disabled = true;
-	clearGameButton.classList.remove('enable');
-	rangeUpdateButton.disabled = true;
-	rangeUpdateButton.classList.remove('enable');
-}
-
-function updateRange(event) {
-	minValueOutput.innerText = minValueInput.value;
-	maxValueOutput.innerText = maxValueInput.value;
-		winNum = generateRandomNumber();
-		console.log(winNum);
-}
-
-function updateNameGuess(event) {
-	guess2Output.innerText = guess2.value;
-	guess1Output.innerText = guess1.value;
-	scoreBoxName1.innerText = name1.value;
-	scoreBoxName2.innerText = name2.value;
-}
-
-function valueReset() {
-	var inputs = document.getElementsByClassName('guess-box__forms');
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].reset();
-	}
-}
-
-function borderErrorClear() {
-	guess1.classList.remove('input-error');
-	guess2.classList.remove('input-error');
-	name1.classList.remove('input-error');
-	name2.classList.remove('input-error');
-}
-
-function resetFields() {
-	valueReset();
-	guess2Output.innerText = '?';
-	guess1Output.innerText = '?';
-	scoreBoxName1.innerText = 'Challenger 1';
-	scoreBoxName2.innerText = 'Challenger 2';
-	tooHilo1.innerText = 'How close is your guess?';
-	tooHilo2.innerText = 'How close is your guess?';
-	borderErrorClear();
-	disableButtonsOnClick();
-}
-
-function clearGame(event) {
-	valueReset();
-	guess1Output.innerText = '?';
-	guess2Output.innerText = '?';
-	maxValueInput.value = '';
-	maxValueOutput.innerText = '100';
-	minValueInput.value = '';
-	minValueOutput.innerText = '1';
-	scoreBoxName1.innerText = 'Challenger 1';
-	scoreBoxName2.innerText = 'Challenger 2';
-	tooHilo1.innerText = 'How close is your guess?';
-	tooHilo2.innerText = 'How close is your guess?';
-	disableButtonsOnClick();
-	borderErrorClear();
-	guessTotal = 0;
-	winNum = generateRandomNumber();
-	console.log(winNum);
-}
-
-function generateRandomNumber() {
-   var min = parseInt(minValueInput.value) || 1;
-   var max = parseInt(maxValueInput.value) || 100;
-   return Math.floor(Math.random() * (max - min +1)) + min;
-}
-console.log(winNum);
 
 function checkInputRange1() {
   var lowRange = parseInt(minValueInput.value) || 1;
@@ -197,11 +72,25 @@ function checkInputRange2() {
 	}
 }
 
-function addGuess() {
-	guessTotal += 1;
+function checkNameInput1() {
+	if (name1.value === '') {
+		name1.classList.add('input-error');
+		alert('Please enter a name');
+	} else {
+		name1.classList.remove('input-error');
+	}
 }
 
-function guessDisplayBox(event) {
+function checkNameInput2() {
+	if (name2.value === '') {
+		name2.classList.add('input-error');
+		alert('Please enter a name');
+	} else {
+		name2.classList.remove('input-error');
+	}
+}
+
+function guessDisplayBox() {
 		if (guess1.value > winNum) {
 			tooHilo1.innerText = 'That\'s too high!';
 		} else if (guess1.value < winNum) {
@@ -219,6 +108,124 @@ function guessDisplayBox(event) {
 		}
 }
 
+function updateScoreBox() {
+	guess1Output.innerText = guess1.value;
+	guess2Output.innerText = guess2.value;
+	scoreBoxName1.innerText = name1.value;
+	scoreBoxName2.innerText = name2.value;
+}
+
+function checkGuessFields() {
+	if (guess1.value && guess2.value !== '') {
+		submitGuessButton.disabled = false;
+		submitGuessButton.classList.add('enable');
+	} else {
+		submitGuessButton.disabled = true;
+		submitGuessButton.classList.remove('enable');
+	}
+} 
+
+function checkRangeFields() {
+	if (minValueInput.value && maxValueInput.value !== '') {
+		rangeUpdateButton.disabled = false;
+		rangeUpdateButton.classList.add('enable');
+	} else {
+		rangeUpdateButton.disabled = true;
+		rangeUpdateButton.classList.remove('enable');
+	}
+}
+
+function enableResetClear() {
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
+		resetGameButton.disabled = false;
+		clearGameButton.disabled = false;
+		resetGameButton.classList.add('enable');
+		clearGameButton.classList.add('enable');
+	} else {
+		resetGameButton.disabled = true;
+		clearGameButton.disabled = true;
+		resetGameButton.classList.remove('enable');
+		clearGameButton.classList.remove('enable');
+	}
+}
+
+function updateRange() {
+	minValueOutput.innerText = minValueInput.value;
+	maxValueOutput.innerText = maxValueInput.value;
+		winNum = generateRandomNumber();
+		console.log(winNum);
+}
+
+
+function borderErrorClear() {
+	guess1.classList.remove('input-error');
+	guess2.classList.remove('input-error');
+	name1.classList.remove('input-error');
+	name2.classList.remove('input-error');
+}
+
+function resetFields() {
+	valueReset();
+	guess2Output.innerText = '?';
+	guess1Output.innerText = '?';
+	scoreBoxName1.innerText = 'Challenger 1';
+	scoreBoxName2.innerText = 'Challenger 2';
+	tooHilo1.innerText = 'How close is your guess?';
+	tooHilo2.innerText = 'How close is your guess?';
+	borderErrorClear();
+	disableButtonsOnClick();
+}
+
+function clearGame() {
+	valueReset();
+	guess1Output.innerText = '?';
+	guess2Output.innerText = '?';
+	maxValueInput.value = '';
+	maxValueOutput.innerText = '100';
+	minValueInput.value = '';
+	minValueOutput.innerText = '1';
+	scoreBoxName1.innerText = 'Challenger 1';
+	scoreBoxName2.innerText = 'Challenger 2';
+	tooHilo1.innerText = 'How close is your guess?';
+	tooHilo2.innerText = 'How close is your guess?';
+	disableButtonsOnClick();
+	borderErrorClear();
+	guessesMade = 0;
+	winNum = generateRandomNumber();
+	console.log(winNum);
+}
+
+function valueReset() {
+	var inputs = document.getElementsByClassName('guess-box__forms');
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].reset();
+	}
+}
+
+function disableButtonsOnClick() {
+	submitGuessButton.disabled = true;
+	submitGuessButton.classList.remove('enable');
+	resetGameButton.disabled = true;
+	resetGameButton.classList.remove('enable');
+	clearGameButton.disabled = true;
+	clearGameButton.classList.remove('enable');
+	rangeUpdateButton.disabled = true;
+	rangeUpdateButton.classList.remove('enable');
+}
+
+function generateRandomNumber() {
+   var min = parseInt(minValueInput.value) || 1;
+   var max = parseInt(maxValueInput.value) || 100;
+   return Math.floor(Math.random() * (max - min +1)) + min;
+}
+console.log(winNum);
+
+function deleteCardEvent(event) {
+	if(event.target.className.includes('delete-btn')) {
+		event.target.parentElement.parentElement.remove();
+	}
+}
+
 function winner1() {
 	var column = document.querySelector('.content__right');
 	var winnerCard = 
@@ -233,8 +240,8 @@ function winner1() {
 				<p class="winner-card__mid--win">Winner</p>
 			</div>
 			<div class="winner-card__bottom">
-				<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
-				<p class="winner-card__bottom--time">X Minues</p>
+				<p class="winner-card__bottom--guesses"><span class="bold">${guessesMade}</span> guesses</p>
+				<p class="winner-card__bottom--time"></p>
 				<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
 			</div>
 		</div>`;
@@ -255,18 +262,12 @@ function winner2() {
 				<p class="winner-card__mid--win">Winner</p>
 			</div>
 			<div class="winner-card__bottom">
-				<p class="winner-card__bottom--guesses"><span class="bold">${guessTotal}</span> guesses</p>
-				<p class="winner-card__bottom--time">X Minues</p>
+				<p class="winner-card__bottom--guesses"><span class="bold">${guessesMade}</span> guesses</p>
+				<p class="winner-card__bottom--time"></p>
 				<img class="winner-card__bottom--img delete-btn" src="images/close_button.png" alt="remove_button">
 			</div>
 		</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
-}
-
-function deleteCardEvent(event) {
-	if(event.target.className.includes('delete-btn')) {
-		event.target.parentElement.parentElement.remove();
-	}
 }
 
 
