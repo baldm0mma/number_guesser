@@ -18,9 +18,10 @@ var scoreBoxName2 = document.querySelector('.score-box__display--ch2--name')
 var submitGuessButton = document.querySelector('.guess-box__submit');
 var tooHilo1 = document.querySelector('.score-box__display--ch1--hilo');
 var tooHilo2 = document.querySelector('.score-box__display--ch2--hilo');
-var winNum = generateRandomNumber();
-var highRange = parseInt(maxValueInput.value) || 100;
-var lowRange = parseInt(minValueInput.value) || 1;
+var winNum = generateRandomNumber(lowRange = 1, highRange = 100);
+var lowRange;
+var highRange;
+
 
 clearGameButton.addEventListener('click', clearGame);
 guess1.addEventListener('keyup', checkGuessFields);
@@ -174,9 +175,11 @@ function enableResetClear() {
 }
 
 function updateRange() {
-	minValueOutput.innerText = minValueInput.value;
-	maxValueOutput.innerText = maxValueInput.value;
-		winNum = generateRandomNumber();
+	lowRange = parseInt(minValueInput.value);
+	highRange = parseInt(maxValueInput.value);
+	minValueOutput.innerText = lowRange;
+	maxValueOutput.innerText = highRange;
+		winNum = generateRandomNumber(lowRange, highRange);
 		console.log(winNum);
 }
 
@@ -239,10 +242,8 @@ function disableButtonsOnClick() {
 	rangeUpdateButton.classList.remove('enable');
 }
 
-function generateRandomNumber() {
-   var min = parseInt(minValueInput.value) || 1;
-   var max = parseInt(maxValueInput.value) || 100;
-   return Math.floor(Math.random() * (max - min +1)) + min;
+function generateRandomNumber(num1, num2) {
+   return Math.floor(Math.random() * (num2 - num1 +1)) + num1;
 }
 console.log(winNum);
 
@@ -295,7 +296,6 @@ function winner2() {
 		</div>`;
 	column.insertAdjacentHTML('afterbegin', winnerCard);
 }
-
 
 
 
