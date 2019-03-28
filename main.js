@@ -185,6 +185,10 @@ function updateRange() {
 
 
 function borderErrorClear() {
+	var warning = document.getElementsByClassName('warning');
+	for (var i = 0; i < warning.length; i++) {
+		warning[i].innerText = '';
+	}
 	guess1.classList.remove('input-error');
 	guess2.classList.remove('input-error');
 	name1.classList.remove('input-error');
