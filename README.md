@@ -20,7 +20,8 @@ Just clone the repo into a local directory, and you're ready to play and tinker 
 
 ##Static Comp Screenshot
 
-
+![desktop view](https://github.com/baldm0mma/number_guesser/blob/master/images/number_guesser_static_comp1.jpg)
+![mobile view](https://github.com/baldm0mma/number_guesser/blob/master/images/number_guesser_static_comp2.jpg)
 
 Authors
 David Engel and Jev Forsberg
