@@ -22,7 +22,6 @@ var winNum = generateRandomNumber(lowRange = 1, highRange = 100);
 var lowRange;
 var highRange;
 
-
 clearGameButton.addEventListener('click', clearGame);
 guess1.addEventListener('keyup', checkGuessFields);
 guess1.addEventListener('keyup', enableResetClear);
@@ -37,6 +36,54 @@ resetGameButton.addEventListener('click', resetFields);
 rightSide.addEventListener('click', deleteCardEvent);
 submitGuessButton.addEventListener('click', submitButtonFunctions);
 
+function generateRandomNumber(num1, num2) {
+   return Math.floor(Math.random() * (num2 - num1 +1)) + num1;
+}
+console.log(winNum);
+
+function updateRange() {
+	lowRange = parseInt(minValueInput.value);
+	highRange = parseInt(maxValueInput.value);
+	minValueOutput.innerText = lowRange;
+	maxValueOutput.innerText = highRange;
+	winNum = generateRandomNumber(lowRange, highRange);
+		console.log(winNum);
+}
+
+function checkGuessFields() {
+	if (guess1.value && guess2.value !== '') {
+		submitGuessButton.classList.add('enable');
+		submitGuessButton.disabled = false;
+	} else {
+		submitGuessButton.classList.remove('enable');
+		submitGuessButton.disabled = true;
+	}
+} 
+
+function checkRangeFields() {
+	if (minValueInput.value && maxValueInput.value !== '') {
+		rangeUpdateButton.classList.add('enable');
+		rangeUpdateButton.disabled = false;
+	} else {
+		rangeUpdateButton.classList.remove('enable');
+		rangeUpdateButton.disabled = true;
+	}
+}
+
+function enableResetClear() {
+	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
+		clearGameButton.classList.add('enable');
+		clearGameButton.disabled = false;
+		resetGameButton.classList.add('enable');
+		resetGameButton.disabled = false;
+	} else {
+		clearGameButton.classList.remove('enable');
+		clearGameButton.disabled = true;
+		resetGameButton.classList.remove('enable');
+		resetGameButton.disabled = true;
+	}
+}
+
 function submitButtonFunctions(event) {
 	event.preventDefault();
 	checkInputRange1();
@@ -44,10 +91,6 @@ function submitButtonFunctions(event) {
 	checkNameInput1();
 	checkNameInput2();
 	scoreBoxValidation();
-}
-
-function guessCounter() {
-	guessesMade += 1;
 }
 
 function checkInputRange1() {
@@ -94,6 +137,38 @@ function checkNameInput2() {
 	}
 }
 
+function validationWarning(target) {
+	target.innerHTML = '<img src=\'images/alert_icon.png\' alt=\'warning icon\' class=\'warning-img\'> Please enter a valid input';
+}
+
+function removeValidationWarning(target) {
+	target.innerText = '';
+}
+
+function scoreBoxValidation() {
+	if (guess1.value >= lowRange && 
+	guess1.value <= highRange && 
+	guess2.value >= lowRange && 
+	guess2.value <= highRange && 
+	name1.value !== '' && 
+	name2.value !== '') {
+		populate();
+		guessCounter();
+	}
+}
+
+function guessCounter() {
+	guessesMade += 1;
+}
+
+function populate() {
+	guess1Output.innerText = guess1.value;
+	guess2Output.innerText = guess2.value;
+	scoreBoxName1.innerText = name1.value;
+	scoreBoxName2.innerText = name2.value;
+	guessHint();
+}
+
 function guessHint() {
 	if (guess1.value > winNum) {
 		tooHilo1.innerText = 'That\'s too high!';
@@ -110,89 +185,6 @@ function guessHint() {
 		tooHilo2.innerText = 'BOOM!';
 		winner2();
 	}
-}
-
-function scoreBoxValidation() {
-	if (guess1.value >= lowRange && 
-	guess1.value <= highRange && 
-	guess2.value >= lowRange && 
-	guess2.value <= highRange && 
-	name1.value !== '' && 
-	name2.value !== '') {
-		populate();
-		guessCounter();
-	}
-}
-
-function populate() {
-	guess1Output.innerText = guess1.value;
-	guess2Output.innerText = guess2.value;
-	scoreBoxName1.innerText = name1.value;
-	scoreBoxName2.innerText = name2.value;
-	guessHint();
-}
-
-function validationWarning(target) {
-	target.innerHTML = '<img src=\'images/alert_icon.png\' alt=\'warning icon\' class=\'warning-img\'> Please enter a valid input';
-}
-
-function removeValidationWarning(target) {
-	target.innerText = '';
-}
-
-function checkGuessFields() {
-	if (guess1.value && guess2.value !== '') {
-		submitGuessButton.classList.add('enable');
-		submitGuessButton.disabled = false;
-	} else {
-		submitGuessButton.classList.remove('enable');
-		submitGuessButton.disabled = true;
-	}
-} 
-
-function checkRangeFields() {
-	if (minValueInput.value && maxValueInput.value !== '') {
-		rangeUpdateButton.classList.add('enable');
-		rangeUpdateButton.disabled = false;
-	} else {
-		rangeUpdateButton.classList.remove('enable');
-		rangeUpdateButton.disabled = true;
-	}
-}
-
-function enableResetClear() {
-	if (name1.value && name2.value && guess1.value && guess2.value !== '') {
-		clearGameButton.classList.add('enable');
-		clearGameButton.disabled = false;
-		resetGameButton.classList.add('enable');
-		resetGameButton.disabled = false;
-	} else {
-		clearGameButton.classList.remove('enable');
-		clearGameButton.disabled = true;
-		resetGameButton.classList.remove('enable');
-		resetGameButton.disabled = true;
-	}
-}
-
-function updateRange() {
-	lowRange = parseInt(minValueInput.value);
-	highRange = parseInt(maxValueInput.value);
-	minValueOutput.innerText = lowRange;
-	maxValueOutput.innerText = highRange;
-		winNum = generateRandomNumber(lowRange, highRange);
-		console.log(winNum);
-}
-
-
-function borderErrorClear() {
-	var warning = document.getElementsByClassName('warning');
-	for (var i = 0; i < warning.length; i++) {
-		warning[i].innerText = '';
-	}
-	guess1.classList.remove('input-error');
-	guess2.classList.remove('input-error');
-	name1.classList.remove('input-error');
-	name2.classList.remove('input-error');
 }
 
 function resetFields() {
@@ -222,17 +214,8 @@ function clearGame() {
 	disableButtonsOnClick();
 	borderErrorClear();
 	guessesMade = 1;
-	winNum = generateRandomNumber();
+	winNum = generateRandomNumber(lowRange = 1, highRange = 100);
 	console.log(winNum);
-}
-
-function valueReset() {
-	var inputs = document.getElementsByClassName('guess-box__forms');
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].reset();
-		submitGuessButton.classList.remove('enable');
-		submitGuessButton.disabled = true;
-	}
 }
 
 function disableButtonsOnClick() {
@@ -246,10 +229,25 @@ function disableButtonsOnClick() {
 	rangeUpdateButton.classList.remove('enable');
 }
 
-function generateRandomNumber(num1, num2) {
-   return Math.floor(Math.random() * (num2 - num1 +1)) + num1;
+function borderErrorClear() {
+	var warning = document.getElementsByClassName('warning');
+	for (var i = 0; i < warning.length; i++) {
+		warning[i].innerText = '';
+	}
+	guess1.classList.remove('input-error');
+	guess2.classList.remove('input-error');
+	name1.classList.remove('input-error');
+	name2.classList.remove('input-error');
 }
-console.log(winNum);
+
+function valueReset() {
+	var inputs = document.getElementsByClassName('guess-box__forms');
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].reset();
+		submitGuessButton.classList.remove('enable');
+		submitGuessButton.disabled = true;
+	}
+}
 
 function deleteCardEvent(event) {
 	if(event.target.className.includes('delete-btn')) {
