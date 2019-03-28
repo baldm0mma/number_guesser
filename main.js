@@ -1,4 +1,4 @@
-var clearGameButton = document.querySelector('.guess-box__clear');
+ var clearGameButton = document.querySelector('.guess-box__clear');
 var guess1 = document.querySelector('.guess-box__ch1--guess');
 var guess1Output = document.querySelector('.score-box__display--ch1--num');
 var guess2 = document.querySelector('.guess-box__ch2--guess');
